@@ -12,7 +12,7 @@ export function ProgramsTable({ programs }: { programs: Program[] }) {
 
   return (
     <div className="overflow-hidden rounded-3xl border border-border">
-      <div className="hidden grid-cols-[minmax(0,1.6fr)_minmax(0,1.2fr)_minmax(0,0.8fr)_3rem] gap-4 bg-sand px-6 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground md:grid">
+      <div className="hidden grid-cols-[minmax(0,1.6fr)_minmax(0,1.2fr)_minmax(0,0.8fr)_3rem] gap-4 bg-paper px-6 py-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground md:grid">
         <span>Направление</span>
         <span>Предметы ЕГЭ</span>
         <span>Проходной ≈</span>
@@ -30,23 +30,23 @@ export function ProgramsTable({ programs }: { programs: Program[] }) {
               )}
             >
               <div>
-                <p className="font-medium text-cocoa">{p.name}</p>
+                <p className="font-medium text-ink">{p.name}</p>
                 {p.unit && <p className="mt-0.5 text-sm text-muted-foreground">{p.unit}</p>}
               </div>
               <div className="flex flex-wrap items-center gap-1.5 text-sm">
                 {p.required.map((s) => (
-                  <span key={s} className="rounded-full bg-secondary px-2.5 py-0.5 text-cocoa">
+                  <span key={s} className="rounded-full bg-secondary px-2.5 py-0.5 text-ink">
                     {subjectShort(s)}
                   </span>
                 ))}
                 {p.choice && (
-                  <span className="rounded-full border border-dashed border-latte px-2.5 py-0.5 text-cocoa/80">
+                  <span className="rounded-full border border-dashed border-brass px-2.5 py-0.5 text-ink/80">
                     {p.choice.map(subjectShort).join(" / ")}
                   </span>
                 )}
-                {p.dvi && <span className="rounded-full bg-cocoa px-2.5 py-0.5 text-white">+ ДВИ</span>}
+                {p.dvi && <span className="rounded-full bg-ink px-2.5 py-0.5 text-white">+ ДВИ</span>}
               </div>
-              <p className="text-sm text-cocoa">
+              <p className="text-sm text-ink">
                 <span className="font-display text-2xl">{formatScore(p)}</span>
                 <span className="text-muted-foreground"> / {p.scale}</span>
               </p>

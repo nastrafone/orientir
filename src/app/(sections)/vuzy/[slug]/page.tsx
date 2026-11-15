@@ -54,7 +54,7 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
       <Link
         href="/vuzy"
         transitionTypes={NAV_BACK}
-        className="pressable mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-cocoa"
+        className="pressable mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-ink"
       >
         <ArrowLeft className="size-4" /> Все вузы
       </Link>
@@ -62,24 +62,24 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
       <header className="mt-6 grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-16">
         <Cutout src={u.image} alt={u.imageAlt} priority sizes="(min-width: 1024px) 50vw, 100vw" className="aspect-[5/4]" />
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-latte">{u.short}</p>
-          <h1 className="mt-4 font-display text-4xl leading-[1.08] text-cocoa sm:text-5xl">{u.name}</h1>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brass">{u.short}</p>
+          <h1 className="mt-4 font-display text-4xl leading-[1.08] text-ink sm:text-5xl">{u.name}</h1>
           <LargeTitle title={u.short} />
-          <p className="mt-4 font-display text-2xl italic text-primary">{u.tagline}</p>
+          <p className="mt-4 font-display text-2xl italic text-brass">{u.tagline}</p>
           <p className="mt-5 leading-relaxed text-muted-foreground">{u.about}</p>
           <dl className="mt-7 grid grid-cols-2 gap-4 text-sm">
-            <div className="rounded-2xl bg-sand p-4">
+            <div className="rounded-2xl bg-paper p-4">
               <dt className="flex items-center gap-1.5 text-muted-foreground">
                 <MapPin className="size-3.5" /> Город
               </dt>
-              <dd className="mt-1 font-medium text-cocoa">{u.city}</dd>
+              <dd className="mt-1 font-medium text-ink">{u.city}</dd>
               <dd className="text-xs text-muted-foreground">{regionLabel(u.area)}</dd>
             </div>
-            <div className="rounded-2xl bg-sand p-4">
+            <div className="rounded-2xl bg-paper p-4">
               <dt className="flex items-center gap-1.5 text-muted-foreground">
                 <CalendarDays className="size-3.5" /> Основан
               </dt>
-              <dd className="mt-1 font-medium text-cocoa">{u.founded} г.</dd>
+              <dd className="mt-1 font-medium text-ink">{u.founded} г.</dd>
             </div>
           </dl>
           <a
@@ -98,8 +98,8 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
         <ul className="mt-8 grid gap-4 sm:grid-cols-2">
           {u.opportunities.map((o) => (
             <li key={o} className="flex gap-4 rounded-3xl border border-border p-6">
-              <Sparkles className="mt-0.5 size-5 shrink-0 text-latte" />
-              <span className="leading-relaxed text-cocoa">{o}</span>
+              <Sparkles className="mt-0.5 size-5 shrink-0 text-brass" />
+              <span className="leading-relaxed text-ink">{o}</span>
             </li>
           ))}
         </ul>
@@ -121,14 +121,14 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
           <SectionTitle>Особенности конкурса</SectionTitle>
           <ul className="mt-6 space-y-4">
             {u.admission.map((a) => (
-              <li key={a} className="border-l-2 border-latte pl-4 leading-relaxed text-cocoa">
+              <li key={a} className="border-l-2 border-brass pl-4 leading-relaxed text-ink">
                 {a}
               </li>
             ))}
           </ul>
           {u.ownOlympiads.length > 0 && (
             <div className="mt-8">
-              <p className="text-sm font-semibold text-cocoa">Олимпиады вуза</p>
+              <p className="text-sm font-semibold text-ink">Олимпиады вуза</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {u.ownOlympiads.map((o) => {
                   const ol = getOlympiad(o);
@@ -137,12 +137,12 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
                       key={o}
                       href={`/olimpiady/${ol.slug}`}
                       transitionTypes={NAV_FORWARD}
-                      className="pressable rounded-full border border-border px-4 py-2 text-sm text-cocoa hover:border-latte hover:bg-sand"
+                      className="pressable rounded-full border border-border px-4 py-2 text-sm text-ink hover:border-brass hover:bg-paper"
                     >
                       {ol.short} →
                     </Link>
                   ) : (
-                    <span key={o} className="rounded-full border border-border px-4 py-2 text-sm text-cocoa">
+                    <span key={o} className="rounded-full border border-border px-4 py-2 text-sm text-ink">
                       {o}
                     </span>
                   );
@@ -152,9 +152,9 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
           )}
         </div>
         <div className="space-y-6">
-          <div className="rounded-3xl bg-sand p-7">
-            <p className="flex items-center gap-2 font-display text-2xl text-cocoa">
-              <BedDouble className="size-5 text-primary" /> Общежитие
+          <div className="rounded-3xl bg-paper p-7">
+            <p className="flex items-center gap-2 font-display text-2xl text-ink">
+              <BedDouble className="size-5 text-brass" /> Общежитие
             </p>
             <p className="mt-3 leading-relaxed text-muted-foreground">{u.dorm}</p>
           </div>
@@ -162,9 +162,9 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
             <Link
               href={`/kursy#${u.slug}`}
               transitionTypes={NAV_FORWARD}
-              className="pressable group block rounded-3xl border border-border p-7 hover:bg-sand"
+              className="pressable group block rounded-3xl border border-border p-7 hover:bg-paper"
             >
-              <p className="font-display text-2xl text-cocoa">Курсы для школьников</p>
+              <p className="font-display text-2xl text-ink">Курсы для школьников</p>
               <p className="mt-2 text-muted-foreground">
                 {courses.courses.map((c) => c.title).join(" · ")}
               </p>

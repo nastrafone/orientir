@@ -6,8 +6,8 @@ export default function NotFound() {
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center px-5 text-center">
       <Logo />
-      <p className="mt-10 font-display text-7xl text-latte">404</p>
-      <h1 className="mt-2 font-display text-4xl text-cocoa">Такой страницы нет</h1>
+      <p className="mt-10 font-display text-7xl text-brass">404</p>
+      <h1 className="mt-2 font-display text-4xl text-ink">Такой страницы нет</h1>
       <p className="mt-3 max-w-md text-muted-foreground">Похоже, мы сбились с курса. Вернись на главную — там весь маршрут.</p>
       <Link
         href="/"

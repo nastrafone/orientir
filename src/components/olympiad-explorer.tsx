@@ -19,7 +19,7 @@ export function LevelBadge({ level, className }: { level: string; className?: st
     <span
       className={cn(
         "inline-flex h-7 items-center rounded-full px-3 text-xs font-semibold",
-        top ? "bg-cocoa text-white" : "bg-secondary text-cocoa",
+        top ? "bg-ink text-white" : "bg-secondary text-ink",
         className,
       )}
     >
@@ -71,17 +71,17 @@ export function OlympiadExplorer() {
                 href={`/olimpiady/${o.slug}`}
                 transitionTypes={NAV_FORWARD}
                 className={cn(
-                  "pressable group flex h-full flex-col rounded-3xl border p-7 hover:shadow-[0_24px_60px_-34px_rgba(92,68,52,0.45)]",
-                  mine ? "border-latte/70 bg-sand" : "border-border bg-white",
+                  "pressable group flex h-full flex-col rounded-3xl border p-7 hover:shadow-[0_24px_60px_-34px_rgba(20,30,52,0.35)]",
+                  mine ? "border-brass/70 bg-paper" : "border-border bg-white",
                 )}
               >
                 <div className="flex items-start justify-between gap-4">
                   <LevelBadge level={o.level} />
-                  <ArrowUpRight className="size-5 text-latte transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                  <ArrowUpRight className="size-5 text-brass transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brass" />
                 </div>
-                <h2 className="mt-5 font-display text-[1.8rem] leading-tight text-cocoa">{o.short}</h2>
+                <h2 className="mt-5 font-display text-[1.8rem] leading-tight text-ink">{o.short}</h2>
                 <p className="mt-1 text-sm text-muted-foreground">{o.organizer}</p>
-                <p className="mt-4 line-clamp-2 text-[0.95rem] leading-relaxed text-cocoa/85">{o.profiles.join(" · ")}</p>
+                <p className="mt-4 line-clamp-2 text-[0.95rem] leading-relaxed text-ink/85">{o.profiles.join(" · ")}</p>
                 <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-6">
                   {o.subjects
                     .filter((s) => s !== "rus")
@@ -91,7 +91,7 @@ export function OlympiadExplorer() {
                         key={s}
                         className={cn(
                           "rounded-full px-2.5 py-0.5 text-xs",
-                          personal?.subjects.includes(s) ? "bg-primary text-white" : "bg-white text-cocoa ring-1 ring-border",
+                          personal?.subjects.includes(s) ? "bg-primary text-white" : "bg-white text-ink ring-1 ring-border",
                         )}
                       >
                         {subjectShort(s)}

@@ -13,7 +13,7 @@ export const metadata = pageMeta({
 export default function CoursesPage() {
   return (
     <Screen>
-      <PageHero eyebrow="Курсы" title={<>Курсы при университетах <span className="text-primary italic">и что они дают</span></>}>
+      <PageHero eyebrow="Курсы" title={<>Курсы при университетах <span className="text-brass italic">и что они дают</span></>}>
         Подготовка к ЕГЭ, ДВИ и олимпиадам от самих вузов, заочные школы и бесплатные федеральные программы. Хороший курс —
         это не только баллы, но и возможность заранее познакомиться с университетом.
       </PageHero>

@@ -23,12 +23,12 @@ function ProfileButton({ className, onOpen }: { className?: string; onOpen?: () 
         setEditorOpen(true);
       }}
       className={cn(
-        "pressable inline-flex h-10 items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 text-sm text-cocoa backdrop-blur hover:border-latte hover:bg-sand",
+        "pressable inline-flex h-10 items-center gap-2 rounded-full border border-border bg-white/80 px-3.5 text-sm text-ink backdrop-blur hover:border-brass hover:bg-paper",
         !ready && "invisible",
         className,
       )}
     >
-      <UserRound className="size-4 text-primary" />
+      <UserRound className="size-4 text-brass" />
       <span className="max-w-32 truncate">{personal?.name || (personal ? "Мой профиль" : "Заполнить профиль")}</span>
       {personal && <span className="text-muted-foreground">· {personal.grade} кл.</span>}
     </button>
@@ -89,7 +89,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
               exit={{ opacity: 0, y: 8 }}
               transition={SPRING_SNAPPY}
               aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 max-w-[48vw] -translate-x-1/2 truncate text-[0.95rem] font-semibold text-cocoa lg:hidden"
+              className="pointer-events-none absolute left-1/2 max-w-[48vw] -translate-x-1/2 truncate text-[0.95rem] font-semibold text-ink lg:hidden"
             >
               {compact.title}
             </motion.p>
@@ -108,7 +108,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
                   aria-current={active ? "page" : undefined}
                   className={cn(
                     "pressable relative rounded-full px-4 py-2 text-[0.92rem]",
-                    active ? "text-cocoa" : "text-muted-foreground hover:text-cocoa",
+                    active ? "text-ink" : "text-muted-foreground hover:text-ink",
                   )}
                 >
                   {active && (
@@ -130,7 +130,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
           {variant === "default" && (
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger
-                className="pressable inline-flex size-10 items-center justify-center rounded-full border border-border bg-white/70 text-cocoa lg:hidden"
+                className="pressable inline-flex size-10 items-center justify-center rounded-full border border-border bg-white/70 text-ink lg:hidden"
                 aria-label="Открыть меню"
               >
                 <Menu className="size-5" />
@@ -151,8 +151,8 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
                         onClick={() => setOpen(false)}
                         className="pressable flex items-baseline gap-4 border-b border-border py-4"
                       >
-                        <span className="font-display text-base text-latte">0{i + 1}</span>
-                        <span className="font-display text-2xl text-cocoa">{item.label}</span>
+                        <span className="font-display text-base text-brass">0{i + 1}</span>
+                        <span className="font-display text-2xl text-ink">{item.label}</span>
                       </Link>
                     </motion.div>
                   ))}

@@ -13,7 +13,7 @@ export const metadata = pageMeta({
 export default function UniversitiesPage() {
   return (
     <Screen>
-      <PageHero eyebrow="Вузы" title={<>Университеты, в которые <span className="text-primary italic">стоит целиться</span></>}>
+      <PageHero eyebrow="Вузы" title={<>Университеты, в которые <span className="text-brass italic">стоит целиться</span></>}>
         Столичные и региональные вузы с проходными баллами и нужными предметами ЕГЭ. Нажми на университет, чтобы увидеть
         направления, особенности конкурса и возможности для студентов.
       </PageHero>

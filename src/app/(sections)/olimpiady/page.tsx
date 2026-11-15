@@ -14,12 +14,12 @@ export const metadata = pageMeta({
 export default function OlympiadsPage() {
   return (
     <Screen>
-      <PageHero eyebrow="Олимпиады" title={<>Олимпиады, которые <span className="text-primary italic">открывают двери</span></>}>
+      <PageHero eyebrow="Олимпиады" title={<>Олимпиады, которые <span className="text-brass italic">открывают двери</span></>}>
         Диплом олимпиады может дать поступление без экзаменов (БВИ) или 100 баллов ЕГЭ. Выбери предмет и нажми на олимпиаду —
         покажем направления и что даёт каждое место.
       </PageHero>
       <div className="mx-auto mb-8 max-w-7xl px-5 md:px-10">
-        <div className="grid gap-4 rounded-3xl bg-sand p-6 text-sm leading-relaxed text-cocoa sm:grid-cols-3 sm:p-8">
+        <div className="grid gap-4 rounded-3xl bg-paper p-6 text-sm leading-relaxed text-ink sm:grid-cols-3 sm:p-8">
           <p>
             <span className="block font-display text-2xl">ВсОШ</span>
             Всероссийская олимпиада: победители и призёры финала поступают без экзаменов в любой вуз по профилю.

@@ -124,7 +124,7 @@ export function Intro() {
         >
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_45%,#f6ede3_0%,rgba(255,255,255,0)_70%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_45%,#efebe0_0%,rgba(255,255,255,0)_70%)]"
           />
 
           <div
@@ -152,7 +152,7 @@ export function Intro() {
               <motion.p
                 key="greeting"
                 exit={{ opacity: 0, transition: { duration: 0.4 } }}
-                className="typing-caret absolute inset-x-0 top-1/2 mt-6 px-6 text-center font-display text-4xl italic text-cocoa sm:text-5xl"
+                className="typing-caret absolute inset-x-0 top-1/2 mt-6 px-6 text-center font-display text-4xl italic text-ink sm:text-5xl"
                 aria-live="polite"
               >
                 {typed}
@@ -162,15 +162,15 @@ export function Intro() {
             {phase === "name" && (
               <motion.div key="name" {...stepMotion} className="absolute inset-0 overflow-y-auto">
                 <form onSubmit={submitName} className="mx-auto flex min-h-full max-w-xl flex-col justify-center px-5 pb-12 pt-24">
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-latte">Навигатор для 10–11 классов</p>
-                  <h1 className="font-display text-4xl leading-[1.08] text-cocoa sm:text-5xl">
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-brass">Навигатор для 10–11 классов</p>
+                  <h1 className="font-display text-4xl leading-[1.08] text-ink sm:text-5xl">
                     Привет! Давай построим твой маршрут после школы
                   </h1>
                   <p className="mt-5 text-[1.02rem] leading-relaxed text-muted-foreground">
                     «Ориентир» — бесплатный справочник для старшеклассников. Подскажем, какие олимпиады писать, на какие курсы при
                     университетах пойти, какие вузы подходят под твои предметы ЕГЭ и регион и какие профессии будут востребованы.
                   </p>
-                  <label htmlFor="intro-name" className="mt-9 text-[0.95rem] font-semibold text-cocoa">
+                  <label htmlFor="intro-name" className="mt-9 text-[0.95rem] font-semibold text-ink">
                     Как тебя зовут?
                   </label>
                   <div className="mt-3 flex flex-col gap-3 sm:flex-row">
@@ -195,7 +195,7 @@ export function Intro() {
                   <button
                     type="button"
                     onClick={skip}
-                    className="mt-8 self-start text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-cocoa hover:underline"
+                    className="mt-8 self-start text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-ink hover:underline"
                   >
                     Пропустить знакомство
                   </button>
@@ -206,7 +206,7 @@ export function Intro() {
             {phase === "details" && (
               <motion.div key="details" {...stepMotion} className="absolute inset-0 overflow-y-auto">
                 <form onSubmit={submitDetails} className="mx-auto flex min-h-full max-w-2xl flex-col justify-center px-5 pb-12 pt-24">
-                  <h2 className="font-display text-4xl leading-tight text-cocoa sm:text-5xl">Приятно познакомиться, {name}!</h2>
+                  <h2 className="font-display text-4xl leading-tight text-ink sm:text-5xl">Приятно познакомиться, {name}!</h2>
                   <p className="mt-3 text-[1.02rem] text-muted-foreground">
                     Ответь на три вопроса — и сайт подберёт олимпиады, курсы и вузы именно для тебя.
                   </p>
@@ -220,7 +220,7 @@ export function Intro() {
                     <button
                       type="button"
                       onClick={() => setPhase("name")}
-                      className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-cocoa"
+                      className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-ink"
                     >
                       <ArrowLeft className="size-4" /> Назад
                     </button>

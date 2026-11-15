@@ -28,7 +28,7 @@ export default function SourcesPage() {
       <div className="mx-auto max-w-7xl space-y-16 px-5 md:px-10">
         <section>
           <SectionTitle>Данные</SectionTitle>
-          <ul className="mt-6 space-y-3 text-cocoa">
+          <ul className="mt-6 space-y-3 text-ink">
             {DATA_SOURCES.map((s) => (
               <li key={s.title}>
                 {s.url ? (
@@ -51,7 +51,7 @@ export default function SourcesPage() {
           <ul className="mt-8 grid gap-x-10 gap-y-4 text-sm md:grid-cols-2">
             {PHOTO_CREDITS.map((c) => (
               <li key={c.source} className="border-b border-border pb-4">
-                <span className="font-medium text-cocoa">{c.subject}</span>
+                <span className="font-medium text-ink">{c.subject}</span>
                 <span className="block text-muted-foreground">
                   Автор: {c.author || "не указан"} ·{" "}
                   {c.licenseUrl ? (

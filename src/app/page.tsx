@@ -40,8 +40,8 @@ export default function Home() {
             sizes="(min-width: 1024px) 55vw, 100vw"
             className="object-cover object-[50%_20%]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2b1e15]/85 via-[#2b1e15]/25 to-transparent" />
-          <p className="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-[0.7rem] font-medium tracking-wide text-cocoa backdrop-blur">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f1729]/85 via-[#0f1729]/25 to-transparent" />
+          <p className="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-[0.7rem] font-medium tracking-wide text-ink backdrop-blur">
             МГУ, Воробьёвы горы
           </p>
           <div className="absolute inset-x-0 bottom-0 p-6 sm:p-9 lg:p-12">

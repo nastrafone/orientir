@@ -22,7 +22,7 @@ export function Cutout({
   return (
     <div
       className={cn(
-        "relative isolate overflow-hidden bg-[linear-gradient(180deg,#fbf8f4_0%,#f1e7dc_100%)]",
+        "relative isolate overflow-hidden bg-[linear-gradient(180deg,#faf8f3_0%,#ebe7dc_100%)]",
         round ? "rounded-full" : "rounded-[1.75rem]",
         className,
       )}
@@ -30,7 +30,7 @@ export function Cutout({
       <div
         aria-hidden="true"
         className={cn(
-          "absolute left-1/2 -z-10 -translate-x-1/2 rounded-[100%] bg-[#6b4e3a]/20 blur-2xl",
+          "absolute left-1/2 -z-10 -translate-x-1/2 rounded-[100%] bg-[#1e2a44]/20 blur-2xl",
           round ? "bottom-[4%] h-[14%] w-[60%]" : "bottom-[5%] h-[10%] w-[70%]",
         )}
       />

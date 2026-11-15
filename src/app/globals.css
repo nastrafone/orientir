@@ -26,9 +26,9 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-sand: var(--sand);
-  --color-latte: var(--latte);
-  --color-cocoa: var(--cocoa);
+  --color-paper: var(--paper);
+  --color-brass: var(--brass);
+  --color-ink: var(--ink);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -38,31 +38,32 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Палитра: нежно-коричневый и белый. */
+/* Палитра «Оксфорд»: тёмно-синий, слоновая кость и латунь. */
 :root {
   color-scheme: light;
   --background: #ffffff;
-  --foreground: #3a2a1f;
+  --foreground: #1b2438;
   --card: #ffffff;
-  --card-foreground: #3a2a1f;
+  --card-foreground: #1b2438;
   --popover: #ffffff;
-  --popover-foreground: #3a2a1f;
-  --primary: #8b6a50;
-  --primary-foreground: #ffffff;
-  --secondary: #f4ede5;
-  --secondary-foreground: #4a3628;
-  --muted: #f7f2ec;
-  --muted-foreground: #7c6757;
-  --accent: #ecdfd1;
-  --accent-foreground: #3a2a1f;
+  --popover-foreground: #1b2438;
+  --primary: #1e2a44;
+  --primary-foreground: #f7f4ec;
+  --secondary: #eeebe2;
+  --secondary-foreground: #1e2a44;
+  --muted: #f5f3ed;
+  --muted-foreground: #5b6378;
+  --accent: #e6e2d6;
+  --accent-foreground: #1e2a44;
   --destructive: #b4442f;
-  --border: #e9dfd4;
-  --input: #e2d4c5;
-  --ring: #b8957a;
+  --border: #e4e1d8;
+  --input: #d9d5ca;
+  --ring: #8d97ae;
   --radius: 0.875rem;
-  --sand: #faf6f1;
-  --latte: #c9aa8e;
-  --cocoa: #5c4434;
+  /* paper — подложки и секции, brass — латунный акцент, ink — заголовки и тёмные плашки */
+  --paper: #f7f4ec;
+  --brass: #9a712e;
+  --ink: #1e2a44;
 
   /* Кривые движения в духе iOS: плавное торможение навигации и пружина с лёгким перелётом. */
   --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
@@ -101,8 +102,8 @@
     cursor: pointer;
   }
   ::selection {
-    background: #e6d3c0;
-    color: #3a2a1f;
+    background: #e9dfc3;
+    color: #1b2438;
   }
 }
 
@@ -176,7 +177,7 @@ html[data-intro="skip"] #intro-overlay {
 }
 ::view-transition-new(.push-enter) {
   animation: var(--dur-push) var(--ease-ios) both vt-push-in;
-  box-shadow: -24px 0 48px rgb(58 42 31 / 0.12);
+  box-shadow: -24px 0 48px rgb(20 30 52 / 0.14);
 }
 ::view-transition-old(.push-exit) {
   animation: var(--dur-push) var(--ease-ios) both vt-push-out;
@@ -191,7 +192,7 @@ html[data-intro="skip"] #intro-overlay {
 }
 ::view-transition-old(.pop-exit) {
   animation: var(--dur-push) var(--ease-ios) both vt-pop-out;
-  box-shadow: -24px 0 48px rgb(58 42 31 / 0.12);
+  box-shadow: -24px 0 48px rgb(20 30 52 / 0.14);
 }
 ::view-transition-new(.pop-enter) {
   animation: var(--dur-push) var(--ease-ios) both vt-pop-in;
@@ -253,7 +254,7 @@ html[data-intro="skip"] #intro-overlay {
 
 [data-slot="dialog-overlay"],
 [data-slot="sheet-overlay"] {
-  background: rgb(31 23 17 / 0.3);
+  background: rgb(14 20 34 / 0.34);
 }
 [data-slot="dialog-overlay"][data-state="open"],
 [data-slot="sheet-overlay"][data-state="open"] {
@@ -327,7 +328,7 @@ html[data-intro="skip"] #intro-overlay {
 
 /* Пока открыта шторка, страница «отъезжает» назад, как в iOS. Переменные выставляет AppShell. */
 html[data-recede] {
-  background: #1f1711;
+  background: #0d1322;
 }
 html[data-recede] body {
   background: transparent;

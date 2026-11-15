@@ -14,12 +14,12 @@ export const metadata = pageMeta({
 
 function Timeline({ items }: { items: { when: string; title: string; text: string }[] }) {
   return (
-    <ol className="relative mt-10 space-y-10 border-l border-latte/60 pl-8">
+    <ol className="relative mt-10 space-y-10 border-l border-brass/60 pl-8">
       {items.map((s) => (
         <li key={s.title} className="relative">
-          <span className="absolute -left-[2.35rem] top-1.5 size-3 rounded-full border-2 border-white bg-primary ring-1 ring-latte" />
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">{s.when}</p>
-          <p className="mt-1.5 font-display text-2xl text-cocoa">{s.title}</p>
+          <span className="absolute -left-[2.35rem] top-1.5 size-3 rounded-full border-2 border-white bg-primary ring-1 ring-brass" />
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brass">{s.when}</p>
+          <p className="mt-1.5 font-display text-2xl text-ink">{s.title}</p>
           <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground">{s.text}</p>
         </li>
       ))}
@@ -30,7 +30,7 @@ function Timeline({ items }: { items: { when: string; title: string; text: strin
 export default function AdvicePage() {
   return (
     <Screen>
-      <PageHero eyebrow="Советы" title={<>План, сроки и <span className="text-primary italic">правила поступления</span></>}>
+      <PageHero eyebrow="Советы" title={<>План, сроки и <span className="text-brass italic">правила поступления</span></>}>
         Что делать в 10 и 11 классе, чтобы к лету у тебя были высокие баллы, дипломы олимпиад и понятный список вузов.
       </PageHero>
       <AdviceFocus />
@@ -47,8 +47,8 @@ export default function AdvicePage() {
           </div>
         </section>
 
-        <section id="olympiads-tip" className="scroll-mt-28 rounded-[2rem] bg-sand p-8 sm:p-12" aria-label="Олимпиады в 10 классе">
-          <p className="max-w-3xl font-display text-3xl leading-snug text-cocoa sm:text-4xl">
+        <section id="olympiads-tip" className="scroll-mt-28 rounded-[2rem] bg-paper p-8 sm:p-12" aria-label="Олимпиады в 10 классе">
+          <p className="max-w-3xl font-display text-3xl leading-snug text-ink sm:text-4xl">
             Дипломы олимпиад, полученные в 10 классе, действуют 4 года — значит, на льготу можно заработать уже сейчас, а в 11
             классе спокойно готовиться к ЕГЭ.
           </p>
@@ -59,7 +59,7 @@ export default function AdvicePage() {
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {ADMISSION_RULES.map((r) => (
               <li key={r.title} className="rounded-3xl border border-border p-7">
-                <p className="font-display text-2xl text-cocoa">{r.title}</p>
+                <p className="font-display text-2xl text-ink">{r.title}</p>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{r.text}</p>
               </li>
             ))}
@@ -75,8 +75,8 @@ export default function AdvicePage() {
             </p>
             <ul className="mt-6 space-y-3">
               {ACHIEVEMENTS.map((a) => (
-                <li key={a} className="flex gap-3 text-cocoa">
-                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" /> {a}
+                <li key={a} className="flex gap-3 text-ink">
+                  <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-brass" /> {a}
                 </li>
               ))}
             </ul>
@@ -85,8 +85,8 @@ export default function AdvicePage() {
             <SectionTitle>Как готовиться к ЕГЭ</SectionTitle>
             <ul className="mt-6 space-y-4">
               {EXAM_TIPS.map((t, i) => (
-                <li key={t} className="flex gap-4 leading-relaxed text-cocoa">
-                  <span className="font-display text-2xl leading-none text-latte">{i + 1}</span>
+                <li key={t} className="flex gap-4 leading-relaxed text-ink">
+                  <span className="font-display text-2xl leading-none text-brass">{i + 1}</span>
                   {t}
                 </li>
               ))}
@@ -98,8 +98,8 @@ export default function AdvicePage() {
           <SectionTitle id="regions-title">Если ты не из Москвы и Петербурга</SectionTitle>
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {REGIONAL_TIPS.map((t) => (
-              <li key={t.title} className="rounded-3xl bg-sand p-7">
-                <p className="font-display text-2xl text-cocoa">{t.title}</p>
+              <li key={t.title} className="rounded-3xl bg-paper p-7">
+                <p className="font-display text-2xl text-ink">{t.title}</p>
                 <p className="mt-3 leading-relaxed text-muted-foreground">{t.text}</p>
               </li>
             ))}
@@ -115,13 +115,13 @@ export default function AdvicePage() {
                   href={r.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-6 py-5 transition-colors hover:bg-sand sm:px-3"
+                  className="group flex items-center justify-between gap-6 py-5 transition-colors hover:bg-paper sm:px-3"
                 >
                   <span>
-                    <span className="font-display text-2xl text-cocoa">{r.title}</span>
+                    <span className="font-display text-2xl text-ink">{r.title}</span>
                     <span className="ml-3 text-sm text-muted-foreground">{r.text}</span>
                   </span>
-                  <ArrowUpRight className="size-5 shrink-0 text-latte transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                  <ArrowUpRight className="size-5 shrink-0 text-brass transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brass" />
                 </a>
               </li>
             ))}

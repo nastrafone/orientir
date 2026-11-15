@@ -36,14 +36,14 @@ export function Segmented<T extends string | number>({
             className={cn(
               "pressable relative rounded-[0.9rem] text-sm",
               size === "lg" ? "px-5 py-2.5" : "px-4 py-2",
-              active ? "text-cocoa" : "text-cocoa/65 hover:text-cocoa",
+              active ? "text-ink" : "text-ink/65 hover:text-ink",
             )}
           >
             {active && (
               <motion.span
                 layoutId={`segment-${id}`}
                 transition={SPRING_SNAPPY}
-                className="absolute inset-0 rounded-[0.9rem] bg-white shadow-[0_1px_2px_rgb(58_42_31/0.08),0_3px_10px_rgb(58_42_31/0.08)]"
+                className="absolute inset-0 rounded-[0.9rem] bg-white shadow-[0_1px_2px_rgb(20_30_52/0.08),0_3px_10px_rgb(20_30_52/0.08)]"
               />
             )}
             <span className="relative">{o.label}</span>

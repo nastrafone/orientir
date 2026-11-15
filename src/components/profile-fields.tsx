@@ -42,7 +42,7 @@ function Chip({
         "pressable inline-flex items-center rounded-full border px-3.5 py-2 text-sm",
         active
           ? "border-primary bg-primary text-primary-foreground"
-          : "border-input bg-white text-foreground hover:border-latte hover:bg-sand",
+          : "border-input bg-white text-foreground hover:border-brass hover:bg-paper",
         disabled && "cursor-default opacity-90",
         className,
       )}
@@ -75,8 +75,8 @@ function Question({ n, title, hint, children }: { n: number; title: string; hint
   return (
     <fieldset className="space-y-3">
       <legend className="flex items-baseline gap-3">
-        <span className="font-display text-lg text-latte">0{n}</span>
-        <span className="text-[0.95rem] font-semibold text-cocoa">{title}</span>
+        <span className="font-display text-lg text-brass">0{n}</span>
+        <span className="text-[0.95rem] font-semibold text-ink">{title}</span>
       </legend>
       {hint && <p className="-mt-1 text-sm text-muted-foreground">{hint}</p>}
       {children}

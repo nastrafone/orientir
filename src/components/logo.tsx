@@ -15,11 +15,11 @@ export function LogoMark({ className }: { className?: string }) {
 /** compact — на узких экранах прячет надпись, оставляя знак: место нужно компактному заголовку в шапке. */
 export function Logo({ className, markClassName, compact }: { className?: string; markClassName?: string; compact?: boolean }) {
   return (
-    <span className={cn("inline-flex items-center text-primary", className)}>
+    <span className={cn("inline-flex items-center text-brass", className)}>
       <LogoMark className={markClassName} />
       <span
         className={cn(
-          "overflow-hidden whitespace-nowrap pl-2.5 font-display text-[1.65rem] leading-[1.2] font-semibold tracking-tight text-cocoa transition-[max-width,opacity,padding] duration-500 ease-[var(--ease-ios)]",
+          "overflow-hidden whitespace-nowrap pl-2.5 font-display text-[1.65rem] leading-[1.2] font-semibold tracking-tight text-ink transition-[max-width,opacity,padding] duration-500 ease-[var(--ease-ios)]",
           compact ? "max-w-40 max-lg:max-w-0 max-lg:pl-0 max-lg:opacity-0" : "max-w-40",
         )}
       >

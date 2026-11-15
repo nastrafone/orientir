@@ -16,7 +16,7 @@ export function GradeAdvice({ advice }: { advice: Record<Grade, string> }) {
             key={g}
             className={cn(
               "rounded-3xl p-7 transition-colors",
-              mine ? "bg-cocoa text-white" : "bg-sand text-cocoa",
+              mine ? "bg-ink text-white" : "bg-paper text-ink",
               personal && !mine && "opacity-70",
             )}
           >

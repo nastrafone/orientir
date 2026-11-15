@@ -82,21 +82,21 @@ export function UniversityExplorer() {
                     alt={u.imageAlt}
                     sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
                     priority={i < 3}
-                    className="aspect-[5/4] transition-shadow duration-700 group-hover:shadow-[0_24px_60px_-30px_rgba(92,68,52,0.45)]"
+                    className="aspect-[5/4] transition-shadow duration-700 group-hover:shadow-[0_24px_60px_-30px_rgba(20,30,52,0.35)]"
                     imageClassName="transition-transform duration-700 ease-[var(--ease-spring)] group-hover:-translate-y-1.5 group-hover:scale-[1.03]"
                   />
                   <div className="mt-5 flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                      <h2 className="font-display text-[1.75rem] leading-tight text-cocoa transition-colors group-hover:text-primary">
+                      <h2 className="font-display text-[1.75rem] leading-tight text-ink transition-colors group-hover:text-brass">
                         {u.short}
                       </h2>
                       <p className="mt-1 line-clamp-1 text-sm text-muted-foreground">{u.tagline}</p>
                     </div>
-                    <ArrowUpRight className="mt-2 size-5 shrink-0 text-latte transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                    <ArrowUpRight className="mt-2 size-5 shrink-0 text-brass transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brass" />
                   </div>
-                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-cocoa/80">
+                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink/80">
                     <span className="inline-flex items-center gap-1.5">
-                      <MapPin className="size-3.5 text-latte" />
+                      <MapPin className="size-3.5 text-brass" />
                       {u.city}
                     </span>
                     <span>с {u.founded} г.</span>
@@ -113,8 +113,8 @@ export function UniversityExplorer() {
                           Нет направлений под твои ЕГЭ
                         </Badge>
                       )}
-                      {near === "home" && <Badge className="h-6 bg-secondary px-2.5 text-cocoa">В твоём регионе</Badge>}
-                      {near === "district" && <Badge className="h-6 bg-secondary px-2.5 text-cocoa">В твоём федеральном округе</Badge>}
+                      {near === "home" && <Badge className="h-6 bg-secondary px-2.5 text-ink">В твоём регионе</Badge>}
+                      {near === "district" && <Badge className="h-6 bg-secondary px-2.5 text-ink">В твоём федеральном округе</Badge>}
                     </div>
                   )}
                 </Link>

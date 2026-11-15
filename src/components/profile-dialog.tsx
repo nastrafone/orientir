@@ -20,7 +20,7 @@ export function ProfileDialog() {
           "max-sm:top-auto max-sm:bottom-0 max-sm:left-0 max-sm:max-w-none max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-b-none max-sm:rounded-t-[28px] max-sm:pb-[max(1.5rem,env(safe-area-inset-bottom))] max-sm:pt-3",
         )}
       >
-        <div aria-hidden="true" className="mx-auto mb-1 h-1.5 w-10 rounded-full bg-cocoa/15 sm:hidden" />
+        <div aria-hidden="true" className="mx-auto mb-1 h-1.5 w-10 rounded-full bg-ink/15 sm:hidden" />
         {editorOpen && <ProfileEditor onDone={() => setEditorOpen(false)} />}
       </DialogContent>
     </Dialog>
@@ -46,11 +46,11 @@ function ProfileEditor({ onDone }: { onDone: () => void }) {
   return (
     <form onSubmit={submit}>
       <DialogHeader>
-        <DialogTitle className="font-display text-3xl font-medium text-cocoa">Твой профиль</DialogTitle>
+        <DialogTitle className="font-display text-3xl font-medium text-ink">Твой профиль</DialogTitle>
         <DialogDescription>По этим ответам мы подбираем вузы, олимпиады и курсы. Данные хранятся только в твоём браузере.</DialogDescription>
       </DialogHeader>
       <div className="mt-6 space-y-2">
-        <Label htmlFor="profile-name" className="text-[0.95rem] font-semibold text-cocoa">
+        <Label htmlFor="profile-name" className="text-[0.95rem] font-semibold text-ink">
           Имя
         </Label>
         <Input id="profile-name" value={name} onChange={(e) => setName(e.target.value)} className="h-11 rounded-xl" />

@@ -40,7 +40,7 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
       <Link
         href="/olimpiady"
         transitionTypes={NAV_BACK}
-        className="pressable mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-cocoa"
+        className="pressable mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-ink"
       >
         <ArrowLeft className="size-4" /> Все олимпиады
       </Link>
@@ -50,12 +50,12 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
           <LevelBadge level={o.level} />
           <span className="text-sm text-muted-foreground">{o.grades}</span>
         </div>
-        <h1 className="mt-5 font-display text-4xl leading-[1.08] text-cocoa sm:text-6xl">{o.name}</h1>
+        <h1 className="mt-5 font-display text-4xl leading-[1.08] text-ink sm:text-6xl">{o.name}</h1>
         <LargeTitle title={o.short} />
         <p className="mt-4 text-lg text-muted-foreground">Организатор: {o.organizer}</p>
         <div className="mt-6 flex flex-wrap gap-2">
           {o.subjects.map((s) => (
-            <span key={s} className="rounded-full bg-secondary px-3 py-1 text-sm text-cocoa">
+            <span key={s} className="rounded-full bg-secondary px-3 py-1 text-sm text-ink">
               {subjectLabel(s).replace(" (профиль)", "")}
             </span>
           ))}
@@ -75,7 +75,7 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
           <SectionTitle>Профили</SectionTitle>
           <ul className="mt-6 space-y-3">
             {o.profiles.map((p) => (
-              <li key={p} className="rounded-2xl border border-border px-5 py-4 text-cocoa">
+              <li key={p} className="rounded-2xl border border-border px-5 py-4 text-ink">
                 {p}
               </li>
             ))}
@@ -85,8 +85,8 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
           <SectionTitle>Куда открывает дорогу</SectionTitle>
           <ul className="mt-6 space-y-3">
             {o.directions.map((d) => (
-              <li key={d} className="flex gap-3 rounded-2xl bg-sand px-5 py-4 text-cocoa">
-                <Compass className="mt-0.5 size-5 shrink-0 text-primary" />
+              <li key={d} className="flex gap-3 rounded-2xl bg-paper px-5 py-4 text-ink">
+                <Compass className="mt-0.5 size-5 shrink-0 text-brass" />
                 {d}
               </li>
             ))}
@@ -99,8 +99,8 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
         <div className="mt-8 overflow-hidden rounded-3xl border border-border">
           {o.rewards.map((r, i) => (
             <div key={r.place} className="grid gap-2 border-t border-border p-6 first:border-t-0 md:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] md:gap-8">
-              <p className="flex items-baseline gap-3 font-display text-2xl text-cocoa">
-                <span className="text-lg text-latte">0{i + 1}</span>
+              <p className="flex items-baseline gap-3 font-display text-2xl text-ink">
+                <span className="text-lg text-brass">0{i + 1}</span>
                 {r.place}
               </p>
               <p className="leading-relaxed text-muted-foreground">{r.gives}</p>
@@ -115,9 +115,9 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
         <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {o.stages.map((s, i) => (
             <li key={s.title} className="relative rounded-3xl border border-border p-6">
-              <span className="font-display text-4xl text-latte">{i + 1}</span>
-              <p className="mt-3 font-medium text-cocoa">{s.title}</p>
-              <p className="mt-1 text-sm text-primary">{s.when}</p>
+              <span className="font-display text-4xl text-brass">{i + 1}</span>
+              <p className="mt-3 font-medium text-ink">{s.title}</p>
+              <p className="mt-1 text-sm text-brass">{s.when}</p>
               <p className="mt-2 text-sm text-muted-foreground">{s.format}</p>
             </li>
           ))}
@@ -130,8 +130,8 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
         <div className="mt-8">
           <GradeAdvice advice={o.forGrade} />
         </div>
-        <p className="mt-6 flex max-w-3xl gap-3 text-cocoa">
-          <MapPinned className="mt-0.5 size-5 shrink-0 text-primary" />
+        <p className="mt-6 flex max-w-3xl gap-3 text-ink">
+          <MapPinned className="mt-0.5 size-5 shrink-0 text-brass" />
           {o.regionNote}
         </p>
       </section>
@@ -145,7 +145,7 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
                 key={u.slug}
                 href={`/vuzy/${u.slug}`}
                 transitionTypes={NAV_FORWARD}
-                className="pressable rounded-full border border-border px-5 py-2.5 text-cocoa hover:border-latte hover:bg-sand"
+                className="pressable rounded-full border border-border px-5 py-2.5 text-ink hover:border-brass hover:bg-paper"
               >
                 {u.short} →
               </Link>

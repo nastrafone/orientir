@@ -61,19 +61,19 @@ export function HomePanel() {
 
   return (
     <div className="px-5 pb-16 pt-8 md:px-10 lg:pt-10 xl:pr-14">
-      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-latte">Навигатор для 10–11 классов</p>
-      <h1 className="mt-4 font-display text-[2.6rem] leading-[1.04] text-cocoa sm:text-5xl xl:text-[3.6rem]">
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-brass">Навигатор для 10–11 классов</p>
+      <h1 className="mt-4 font-display text-[2.6rem] leading-[1.04] text-ink sm:text-5xl xl:text-[3.6rem]">
         {personal?.name ? (
           <>
             Привет, {personal.name}!
             <br />
-            <span className="text-primary italic">Вот твой маршрут</span>
+            <span className="text-brass italic">Вот твой маршрут</span>
           </>
         ) : (
           <>
             Куда двигаться
             <br />
-            <span className="text-primary italic">после школы</span>
+            <span className="text-brass italic">после школы</span>
           </>
         )}
       </h1>
@@ -112,18 +112,18 @@ export function HomePanel() {
             <Link
               href={item.href}
               transitionTypes={NAV_FORWARD}
-              className="pressable group flex items-start gap-5 rounded-2xl border-b border-border py-5 hover:bg-sand sm:px-3"
+              className="pressable group flex items-start gap-5 rounded-2xl border-b border-border py-5 hover:bg-paper sm:px-3"
             >
-              <span className="mt-1.5 font-display text-lg text-latte">0{i + 1}</span>
+              <span className="mt-1.5 font-display text-lg text-brass">0{i + 1}</span>
               <span className="flex-1">
-                <span className="block font-display text-[1.9rem] leading-tight text-cocoa transition-colors duration-500 group-hover:text-primary">
+                <span className="block font-display text-[1.9rem] leading-tight text-ink transition-colors duration-500 group-hover:text-brass">
                   {item.label}
                 </span>
                 <span className="mt-1 block text-sm text-muted-foreground">
                   {personal ? personalMeta(item.href, personal) : item.description}
                 </span>
               </span>
-              <ArrowUpRight className="mt-2.5 size-5 shrink-0 text-latte transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
+              <ArrowUpRight className="mt-2.5 size-5 shrink-0 text-brass transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brass" />
             </Link>
           </motion.div>
         ))}
@@ -131,7 +131,7 @@ export function HomePanel() {
 
       <p className="mt-8 text-xs leading-relaxed text-muted-foreground">
         Данные о вузах и олимпиадах — ориентир. Правила приёма меняются ежегодно, сверяйтесь с официальными сайтами.{" "}
-        <Link href="/istochniki" transitionTypes={NAV_TAB} className="underline underline-offset-4 hover:text-cocoa">
+        <Link href="/istochniki" transitionTypes={NAV_TAB} className="underline underline-offset-4 hover:text-ink">
           Источники
         </Link>
       </p>

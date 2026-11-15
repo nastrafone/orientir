@@ -20,7 +20,7 @@ export const metadata = pageMeta({
 export default function CareersPage() {
   return (
     <Screen>
-      <PageHero eyebrow="Направления" title={<>Профессии будущего <span className="text-primary italic">и путь к ним</span></>}>
+      <PageHero eyebrow="Направления" title={<>Профессии будущего <span className="text-brass italic">и путь к ним</span></>}>
         Чем занимаются специалисты, почему они будут нужны, какие экзамены сдавать и где учиться. Рядом — люди, которые
         прославили эти профессии.
       </PageHero>
@@ -29,7 +29,7 @@ export default function CareersPage() {
         <ul className="flex flex-wrap gap-2 border-y border-border py-5">
           {CAREERS.map((c) => (
             <li key={c.slug}>
-              <a href={`#${c.slug}`} className="block rounded-full border border-border px-4 py-2 text-sm text-cocoa transition-colors hover:border-latte hover:bg-sand">
+              <a href={`#${c.slug}`} className="block rounded-full border border-border px-4 py-2 text-sm text-ink transition-colors hover:border-brass hover:bg-paper">
                 {c.title}
               </a>
             </li>
@@ -51,36 +51,36 @@ export default function CareersPage() {
             <figure className={cn("mx-auto w-full max-w-sm lg:sticky lg:top-28", i % 2 === 1 && "lg:order-2")}>
               <Cutout src={c.person.image} alt={c.person.name} sizes="(min-width: 1024px) 26vw, 80vw" className="aspect-square" round />
               <figcaption className="mt-5 text-center">
-                <span className="block font-display text-2xl text-cocoa">{c.person.name}</span>
+                <span className="block font-display text-2xl text-ink">{c.person.name}</span>
                 <span className="mt-1 block text-sm leading-relaxed text-muted-foreground">{c.person.role}</span>
               </figcaption>
             </figure>
 
             <div>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="font-display text-lg text-latte">{String(i + 1).padStart(2, "0")}</span>
+                <span className="font-display text-lg text-brass">{String(i + 1).padStart(2, "0")}</span>
                 <CareerFit sets={c.subjects} />
               </div>
-              <h2 id={`${c.slug}-title`} className="mt-3 font-display text-4xl leading-tight text-cocoa sm:text-5xl">
+              <h2 id={`${c.slug}-title`} className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl">
                 {c.title}
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-cocoa/90">{c.summary}</p>
+              <p className="mt-4 text-lg leading-relaxed text-ink/90">{c.summary}</p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                <span className="font-semibold text-cocoa">Почему востребована: </span>
+                <span className="font-semibold text-ink">Почему востребована: </span>
                 {c.why}
               </p>
 
               <div className="mt-8 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-3xl bg-sand p-6">
-                  <p className="text-sm font-semibold text-cocoa">Чем занимается</p>
+                <div className="rounded-3xl bg-paper p-6">
+                  <p className="text-sm font-semibold text-ink">Чем занимается</p>
                   <ul className="mt-3 space-y-2 text-[0.95rem] text-muted-foreground">
                     {c.tasks.map((t) => (
                       <li key={t}>— {t}</li>
                     ))}
                   </ul>
                 </div>
-                <div className="rounded-3xl bg-sand p-6">
-                  <p className="text-sm font-semibold text-cocoa">ЕГЭ</p>
+                <div className="rounded-3xl bg-paper p-6">
+                  <p className="text-sm font-semibold text-ink">ЕГЭ</p>
                   <ul className="mt-3 space-y-2 text-[0.95rem] text-muted-foreground">
                     {c.subjects.map((set) => (
                       <li key={set.join()}>Русский + {set.filter((s) => s !== "rus").map((s) => subjectLabel(s).toLowerCase().replace(" (профиль)", "")).join(" + ")}</li>
@@ -90,7 +90,7 @@ export default function CareersPage() {
               </div>
 
               <div className="mt-8">
-                <p className="text-sm font-semibold text-cocoa">Где учиться</p>
+                <p className="text-sm font-semibold text-ink">Где учиться</p>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {c.studyAt.map((s) => {
                     const u = getUniversity(s.university);
@@ -100,9 +100,9 @@ export default function CareersPage() {
                         <Link
                           href={`/vuzy/${u.slug}`}
                           transitionTypes={NAV_FORWARD}
-                          className="pressable block rounded-2xl border border-border px-4 py-2.5 text-sm hover:border-latte hover:bg-sand"
+                          className="pressable block rounded-2xl border border-border px-4 py-2.5 text-sm hover:border-brass hover:bg-paper"
                         >
-                          <span className="font-medium text-cocoa">{u.short}</span>
+                          <span className="font-medium text-ink">{u.short}</span>
                           <span className="text-muted-foreground"> · {s.program}</span>
                         </Link>
                       </li>
@@ -112,11 +112,11 @@ export default function CareersPage() {
               </div>
 
               <div className="mt-8">
-                <p className="text-sm font-semibold text-cocoa">Что делать уже в школе</p>
+                <p className="text-sm font-semibold text-ink">Что делать уже в школе</p>
                 <ol className="mt-3 space-y-2.5">
                   {c.steps.map((s, k) => (
-                    <li key={s} className="flex gap-3 leading-relaxed text-cocoa/90">
-                      <span className="font-display text-xl leading-6 text-latte">{k + 1}</span>
+                    <li key={s} className="flex gap-3 leading-relaxed text-ink/90">
+                      <span className="font-display text-xl leading-6 text-brass">{k + 1}</span>
                       {s}
                     </li>
                   ))}

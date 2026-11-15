@@ -16,7 +16,7 @@ export function AdviceFocus() {
 
   return (
     <div className="mx-auto mb-12 max-w-7xl px-5 md:px-10">
-      <div className="rounded-3xl bg-cocoa p-6 text-white sm:p-8">
+      <div className="rounded-3xl bg-ink p-6 text-white sm:p-8">
         <p className="font-display text-2xl">{personal.name ? `${personal.name}, начни отсюда` : "Начни отсюда"}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {links.map((l) => (
