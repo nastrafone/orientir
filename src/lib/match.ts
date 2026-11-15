@@ -1,5 +1,6 @@
 import { regionDistrict } from "@/data/regions";
-import type { Olympiad, Profile, Program, SubjectId, University } from "@/data/types";
+import type { Olympiad } from "@/data/olympiads";
+import type { Profile, Program, SubjectId, University } from "@/data/types";
 
 export function programMatches(program: Program, subjects: SubjectId[]) {
   const has = (s: SubjectId) => s === "rus" || subjects.includes(s);
@@ -29,7 +30,8 @@ export function universityRank(university: University, profile: Profile) {
   return (matches > 0 ? 100 : 0) + (near === "home" ? 40 : near === "district" ? 25 : 0) + matches * 3;
 }
 
-export function formatScore(program: Program) {
-  const [from, to] = program.score;
-  return `${from}–${to}`;
+/** Самый низкий официальный проходной балл вуза — или null, если ни одного не нашли. */
+export function lowestScore(university: University) {
+  const scored = university.programs.filter((p) => p.score !== null);
+  return scored.length ? scored.reduce((a, b) => (b.score! < a.score! ? b : a)) : null;
 }

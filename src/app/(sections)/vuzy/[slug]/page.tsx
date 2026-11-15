@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, BedDouble, CalendarDays, Globe, MapPin, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, BedDouble, Calculator, CalendarDays, Globe, MapPin, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -82,14 +82,24 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
               <dd className="mt-1 font-medium text-ink">{u.founded} г.</dd>
             </div>
           </dl>
-          <a
-            href={u.site}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-primary px-6 text-sm font-medium text-white transition-colors hover:bg-primary/85"
-          >
-            <Globe className="size-4" /> Официальный сайт <ArrowUpRight className="size-4" />
-          </a>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href={u.site}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-6 text-sm font-medium text-white transition-colors hover:bg-primary/85"
+            >
+              <Globe className="size-4" /> Официальный сайт <ArrowUpRight className="size-4" />
+            </a>
+            <a
+              href={u.admissionUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-border px-6 text-sm font-medium text-ink transition-colors hover:border-brass hover:bg-paper"
+            >
+              Приёмная комиссия <ArrowUpRight className="size-4" />
+            </a>
+          </div>
         </div>
       </header>
 
@@ -108,12 +118,21 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
       <section className="mt-20" aria-labelledby="programs">
         <SectionTitle id="programs">Направления и проходные баллы</SectionTitle>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Ориентир для бюджета по последним приёмным кампаниям. В пунктирной рамке — предметы по выбору (нужен один из них).
+          Официальный проходной балл на бюджет по общему конкурсу — сумма последнего зачисленного с учётом индивидуальных
+          достижений, по последней кампании, для которой вуз опубликовал цифру. В пунктирной рамке — предметы по выбору (нужен один
+          из них).
           {u.programs.some((p) => p.dvi) && " ДВИ — дополнительное вступительное испытание вуза, максимум 100 баллов."}
         </p>
         <div className="mt-8">
           <ProgramsTable programs={u.programs} />
         </div>
+        <Link
+          href={`/kalkulyator?vuz=${u.slug}`}
+          transitionTypes={NAV_FORWARD}
+          className="pressable mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-paper px-6 text-sm font-medium text-ink ring-1 ring-border hover:ring-brass"
+        >
+          <Calculator className="size-4 text-brass" /> Посчитать мои шансы
+        </Link>
       </section>
 
       <section className="mt-20 grid gap-10 lg:grid-cols-2" aria-label="Поступление">

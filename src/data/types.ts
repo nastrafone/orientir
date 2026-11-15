@@ -51,10 +51,18 @@ export interface Program {
   required: SubjectId[];
   /** Если задано — нужен хотя бы один предмет по выбору. */
   choice?: SubjectId[];
-  /** Ориентир проходного балла на бюджет (сумма ЕГЭ + ИД, а для вузов с ДВИ — вместе с ДВИ). */
-  score: [number, number];
-  scale: 310 | 410;
+  /**
+   * Официальный проходной балл на бюджет по общему конкурсу — сумма баллов последнего зачисленного
+   * (ЕГЭ + индивидуальные достижения, у МГУ — вместе с ДВИ). null — вуз не опубликовал или мы не нашли официальную цифру.
+   */
+  score: number | null;
+  /** Максимально возможная сумма: 3 ЕГЭ + ИД = 310, с ДВИ МГУ — 410 (на ВМК — 510). */
+  scale: number;
+  year?: number;
+  /** Страница приёмной комиссии, где опубликован балл. */
+  source?: string;
   dvi?: boolean;
+  note?: string;
 }
 
 export interface University {
@@ -66,6 +74,8 @@ export interface University {
   area: RegionId;
   founded: number;
   site: string;
+  /** Официальный сайт приёмной комиссии — для сверки баллов и правил приёма. */
+  admissionUrl: string;
   image: string;
   imageAlt: string;
   tagline: string;
@@ -75,25 +85,6 @@ export interface University {
   ownOlympiads: string[];
   dorm: string;
   programs: Program[];
-}
-
-export type OlympiadLevel = "ВсОШ" | "I" | "I–II" | "I–III" | "II–III" | "III";
-
-export interface Olympiad {
-  slug: string;
-  name: string;
-  short: string;
-  organizer: string;
-  level: OlympiadLevel;
-  grades: string;
-  subjects: SubjectId[];
-  profiles: string[];
-  directions: string[];
-  stages: { title: string; when: string; format: string }[];
-  rewards: { place: string; gives: string }[];
-  forGrade: Record<Grade, string>;
-  regionNote: string;
-  site: string;
 }
 
 export interface Course {

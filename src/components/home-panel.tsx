@@ -30,6 +30,8 @@ function personalMeta(href: string, p: Profile): string {
       const near = fit.filter((u) => proximity(u, p) !== "far").length;
       return `${fit.length} ${plural(fit.length, "вуз подходит", "вуза подходят", "вузов подходят")} по предметам${near ? `, ${near} — рядом с тобой` : ""}`;
     }
+    case "/kalkulyator":
+      return "Сравни свои баллы ЕГЭ с официальными проходными на бюджет";
     case "/olimpiady": {
       const n = OLYMPIADS.filter((o) => olympiadMatches(o, p.subjects)).length;
       return `${n} ${plural(n, "олимпиада", "олимпиады", "олимпиад")} по твоим предметам`;

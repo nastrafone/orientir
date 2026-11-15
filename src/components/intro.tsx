@@ -49,12 +49,13 @@ export function Intro() {
   };
 
   // Печатаем приветствие, затем переходим к знакомству (или сразу на сайт, если профиль уже есть).
+  // Вся заставка вместе с исчезновением укладывается примерно в 2 секунды.
   useEffect(() => {
     if (phase !== "splash") return;
-    const step = reduce ? 0 : 75;
+    const step = reduce ? 0 : 45;
     const timers: ReturnType<typeof setTimeout>[] = [];
     for (let i = 1; i <= GREETING.length; i++) {
-      timers.push(setTimeout(() => setTyped(GREETING.slice(0, i)), 700 + i * step));
+      timers.push(setTimeout(() => setTyped(GREETING.slice(0, i)), 200 + i * step));
     }
     const advance = () => {
       if (!readyRef.current) {
@@ -64,7 +65,7 @@ export function Intro() {
       if (profileRef.current) finish();
       else setPhase("name");
     };
-    timers.push(setTimeout(advance, 700 + GREETING.length * step + 1300));
+    timers.push(setTimeout(advance, 200 + GREETING.length * step + 650));
     return () => timers.forEach(clearTimeout);
   }, [phase, reduce]);
 
@@ -117,7 +118,7 @@ export function Intro() {
           id="intro-overlay"
           key="intro"
           className="fixed inset-0 z-[100] overflow-hidden bg-white"
-          exit={{ opacity: 0, transition: { duration: 0.8, ease: EASE } }}
+          exit={{ opacity: 0, transition: { duration: 0.4, ease: EASE } }}
           role="dialog"
           aria-modal="true"
           aria-label="Знакомство с сайтом"
@@ -139,7 +140,7 @@ export function Intro() {
               <motion.div
                 initial={{ opacity: 0, scale: 1.4 }}
                 animate={{ opacity: 1, scale: phase === "splash" ? 1.6 : 1 }}
-                transition={{ opacity: { duration: 0.8 }, scale: SPRING_GENTLE }}
+                transition={{ opacity: { duration: 0.4 }, scale: SPRING_GENTLE }}
                 style={{ transformOrigin: "center" }}
               >
                 <Logo />

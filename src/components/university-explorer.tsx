@@ -10,7 +10,7 @@ import { Segmented } from "@/components/segmented";
 import { Badge } from "@/components/ui/badge";
 import type { University } from "@/data/types";
 import { UNIVERSITIES } from "@/data/universities";
-import { matchingPrograms, proximity, universityRank } from "@/lib/match";
+import { lowestScore, matchingPrograms, proximity, universityRank } from "@/lib/match";
 import { NAV_FORWARD, SPRING_SMOOTH } from "@/lib/motion";
 
 type Place = "all" | "msk" | "spb" | "regions";
@@ -29,8 +29,8 @@ const FITS: { id: Fit; label: string }[] = [
 ];
 
 function minScore(u: University) {
-  const p = u.programs.reduce((a, b) => (b.score[0] < a.score[0] ? b : a));
-  return `${p.score[0]} / ${p.scale}`;
+  const p = lowestScore(u);
+  return p ? `проходной от ${p.score} / ${p.scale}` : "проходной: нет офиц. данных";
 }
 
 export function UniversityExplorer() {
@@ -100,7 +100,7 @@ export function UniversityExplorer() {
                       {u.city}
                     </span>
                     <span>с {u.founded} г.</span>
-                    <span>проходной от ≈ {minScore(u)}</span>
+                    <span>{minScore(u)}</span>
                   </div>
                   {personal && (
                     <div className="mt-3 flex flex-wrap gap-1.5">

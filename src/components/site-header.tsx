@@ -107,7 +107,7 @@ export function SiteHeader({ variant = "default" }: { variant?: "default" | "hom
                   transitionTypes={NAV_TAB}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "pressable relative rounded-full px-4 py-2 text-[0.92rem]",
+                    "pressable relative rounded-full px-3.5 py-2 text-[0.92rem] xl:px-4",
                     active ? "text-ink" : "text-muted-foreground hover:text-ink",
                   )}
                 >

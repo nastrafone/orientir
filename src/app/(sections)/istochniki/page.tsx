@@ -1,6 +1,8 @@
 import { PageHero, SectionTitle } from "@/components/page-hero";
 import { Screen } from "@/components/screen";
 import { PHOTO_CREDITS } from "@/data/credits";
+import { RSOSH_SOURCE } from "@/data/olympiads";
+import { UNIVERSITIES } from "@/data/universities";
 import { pageMeta } from "@/lib/site";
 
 export const metadata = pageMeta({
@@ -10,20 +12,19 @@ export const metadata = pageMeta({
 });
 
 const DATA_SOURCES = [
-  { title: "Официальные сайты вузов и их приёмных комиссий", url: null },
-  { title: "Российский совет олимпиад школьников — перечень олимпиад", url: "https://rsr-olymp.ru" },
-  { title: "Олимпиада.ру — описания и календарь олимпиад", url: "https://olimpiada.ru" },
+  { title: `Перечень олимпиад школьников на ${RSOSH_SOURCE.year} учебный год — ${RSOSH_SOURCE.order}`, url: RSOSH_SOURCE.orderUrl },
+  { title: "Российский совет олимпиад школьников — перечень, профили и уровни", url: RSOSH_SOURCE.listUrl },
+  { title: "Всероссийская олимпиада школьников — официальный сайт", url: "https://vserosolimp.edsoo.ru" },
   { title: "ФИПИ — демоверсии и спецификации ЕГЭ", url: "https://fipi.ru" },
-  { title: "Порядок приёма на обучение по программам бакалавриата и специалитета (Минобрнауки России)", url: null },
 ];
 
 export default function SourcesPage() {
   return (
     <Screen>
       <PageHero eyebrow="Источники" title="Источники и авторы фото">
-        «Ориентир» — справочный ресурс. Проходные баллы указаны как ориентировочный диапазон по последним приёмным кампаниям,
-        уровни олимпиад и правила приёма пересматриваются ежегодно. Перед подачей документов всегда сверяйтесь с официальными
-        источниками.
+        «Ориентир» — справочный ресурс. Проходные баллы — официальные цифры приёмных комиссий за указанный год (бюджет, общий
+        конкурс); если вуз их не публикует, мы так и пишем и не подставляем оценки агрегаторов. Уровни олимпиад — по действующему
+        перечню. Правила приёма пересматриваются ежегодно, поэтому перед подачей документов сверяйтесь с сайтом вуза.
       </PageHero>
       <div className="mx-auto max-w-7xl space-y-16 px-5 md:px-10">
         <section>
@@ -38,6 +39,21 @@ export default function SourcesPage() {
                 ) : (
                   s.title
                 )}
+              </li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <SectionTitle>Приёмные комиссии</SectionTitle>
+          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+            Ссылка на страницу с конкретной цифрой стоит рядом с каждым проходным баллом на странице вуза.
+          </p>
+          <ul className="mt-6 grid gap-x-10 gap-y-3 text-sm md:grid-cols-2 lg:grid-cols-3">
+            {UNIVERSITIES.map((u) => (
+              <li key={u.slug}>
+                <a href={u.admissionUrl} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-4 hover:underline">
+                  {u.short}
+                </a>
               </li>
             ))}
           </ul>

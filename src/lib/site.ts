@@ -35,6 +35,7 @@ export const HEADER_ROW = "h-16 px-5 md:h-20 md:px-10";
 
 export const NAV = [
   { href: "/vuzy", label: "Вузы", description: "Проходные баллы, программы и что даст университет" },
+  { href: "/kalkulyator", label: "Шансы", description: "Калькулятор: хватит ли твоих баллов на бюджет" },
   { href: "/olimpiady", label: "Олимпиады", description: "Какие писать и что даёт каждое место" },
   { href: "/kursy", label: "Курсы", description: "Подготовка при университетах и бесплатные программы" },
   { href: "/sovety", label: "Советы", description: "План на 10 и 11 класс, сроки и поступление" },

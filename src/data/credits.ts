@@ -176,6 +176,125 @@ export const PHOTO_CREDITS: { subject: string; author: string; license: string; 
     "source": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81_%D0%A1%D0%93%D0%90%D0%A3.JPG"
   },
   {
+    "subject": "Корпус РАНХиГС на проспекте Вернадского",
+    "author": "Foma",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:RAGS-Moscow2.jpg"
+  },
+  {
+    "subject": "Главное здание РУДН",
+    "author": "A.Savin",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:RUDN.jpg"
+  },
+  {
+    "subject": "Корпус РЭУ им. Плеханова",
+    "author": "Brateevsky",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Third_housing_of_Plekhanov_University_of_Economics_in_Moscow,_front_view.JPG"
+  },
+  {
+    "subject": "Здание МАРХИ на Рождественке",
+    "author": "T3ru",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9C%D1%81%D0%BA._%D1%83%D0%BB_%D0%A0%D0%BE%D0%B6%D0%B4%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BA%D0%B0_11%D1%812_(%D0%B8%D0%BD%D1%81%D1%82,%D0%B1.%D1%83%D1%81%D0%B0%D0%B4%D1%8C%D0%B1%D0%B0%D0%92%D0%BE%D1%80%D0%BE%D0%BD%D1%86%D0%BE%D0%B2%D0%B0)_2022_IMG_2000.3_e1.jpg"
+  },
+  {
+    "subject": "Главный корпус МПГУ",
+    "author": "Екатерина Борисова",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9C%D0%9F%D0%93%D0%A3_01.jpg"
+  },
+  {
+    "subject": "Корпуса ПСПбГМУ им. Павлова на улице Льва Толстого",
+    "author": "Екатерина Борисова",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9B%D1%8C%D0%B2%D0%B0_%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%BE%D0%B3%D0%BE_6,_%D0%9F%D0%B5%D1%80%D0%B2%D1%8B%D0%B9_%D0%BC%D0%B5%D0%B401.jpg"
+  },
+  {
+    "subject": "Дворец Разумовского — главное здание РГПУ им. Герцена",
+    "author": "Александровы АГ",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:0503Hb._St._Petersburg._Razumovsky_Palace_(from_Kazanskaya_Street).jpg"
+  },
+  {
+    "subject": "Главное здание Горного университета",
+    "author": "GAlexandrova",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:1259._St._Petersburg._Main_building_of_the_Mining_University.jpg"
+  },
+  {
+    "subject": "Главный корпус САФУ",
+    "author": "Артем Келарев",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Narfu_main_bulding.JPG"
+  },
+  {
+    "subject": "Корпус КубГУ",
+    "author": "Roman Kubanskiy",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9A%D1%83%D0%B1%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82_(IMG_3253).jpg"
+  },
+  {
+    "subject": "Главный корпус Казанского ГМУ",
+    "author": "Anisantha",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C,_%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81_%D0%9A%D0%93%D0%9C%D0%A3.jpg"
+  },
+  {
+    "subject": "Корпус ПГНИУ",
+    "author": "Toshishiro",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9F%D0%B5%D1%80%D0%BC%D1%81%D0%BA%D0%B8%D0%B9_%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82._%D0%9A%D0%BE%D1%80%D0%BF%D1%83%D1%81_%E2%84%965.jpg"
+  },
+  {
+    "subject": "Главный корпус ЮУрГУ",
+    "author": "Sergeidorogan",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%93%D0%BB%D0%B0%D0%B2%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81_%D0%AE%D0%A3%D1%80%D0%93%D0%A3,_%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA.jpg"
+  },
+  {
+    "subject": "Корпус НГТУ",
+    "author": "Панн",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9D%D0%93%D0%A2%D0%A3_2018.jpg"
+  },
+  {
+    "subject": "Здание СибГМУ",
+    "author": "Павел Андрющенко",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Siberian_State_Medical_University.jpg"
+  },
+  {
+    "subject": "Корпус СВФУ в Якутске",
+    "author": "LirikaYumi",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%9A%D0%A4%D0%95%D0%9D_%D0%A1%D0%92%D0%A4%D0%A3_%D0%B0%D0%B2%D0%B3%D1%83%D1%81%D1%82_2013.jpg"
+  },
+  {
+    "subject": "Главный корпус ДГУ",
+    "author": "Шамиль Магомедов",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:%D0%94%D0%93%D0%A3.png"
+  },
+  {
     "subject": "Сергей Королёв",
     "author": "Unknown authorUnknown author",
     "license": "CC BY 4.0",

@@ -7,7 +7,7 @@ import { LargeTitle } from "@/components/large-title";
 import { Screen } from "@/components/screen";
 import { LevelBadge } from "@/components/olympiad-explorer";
 import { SectionTitle } from "@/components/page-hero";
-import { OLYMPIAD_NOTE, OLYMPIADS, getOlympiad } from "@/data/olympiads";
+import { OLYMPIAD_NOTE, OLYMPIADS, RSOSH_REWARDS, RSOSH_SOURCE, VSOSH_REWARDS, getOlympiad } from "@/data/olympiads";
 import { subjectLabel } from "@/data/subjects";
 import { UNIVERSITIES } from "@/data/universities";
 import { NAV_BACK, NAV_FORWARD } from "@/lib/motion";
@@ -47,8 +47,8 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
 
       <header className="mt-8 max-w-4xl">
         <div className="flex flex-wrap items-center gap-3">
-          <LevelBadge level={o.level} />
-          <span className="text-sm text-muted-foreground">{o.grades}</span>
+          <LevelBadge olympiad={o} />
+          {o.grades && <span className="text-sm text-muted-foreground">{o.grades}</span>}
         </div>
         <h1 className="mt-5 font-display text-4xl leading-[1.08] text-ink sm:text-6xl">{o.name}</h1>
         <LargeTitle title={o.short} />
@@ -75,16 +75,26 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
           <SectionTitle>Профили</SectionTitle>
           <ul className="mt-6 space-y-3">
             {o.profiles.map((p) => (
-              <li key={p} className="rounded-2xl border border-border px-5 py-4 text-ink">
-                {p}
+              <li key={p.name} className="flex items-center justify-between gap-4 rounded-2xl border border-border px-5 py-4 text-ink">
+                {p.name}
+                {p.level && <span className="shrink-0 text-sm text-brass">{["I", "II", "III"][p.level - 1]} уровень</span>}
               </li>
             ))}
           </ul>
+          {!o.vsosh && (
+            <p className="mt-4 text-sm text-muted-foreground">
+              Уровни — по официальному перечню на {RSOSH_SOURCE.year} учебный год (
+              <a href={RSOSH_SOURCE.orderUrl} target="_blank" rel="noopener noreferrer" className="text-brass hover:underline">
+                {RSOSH_SOURCE.order}
+              </a>
+              ).
+            </p>
+          )}
         </div>
         <div>
           <SectionTitle>Куда открывает дорогу</SectionTitle>
           <ul className="mt-6 space-y-3">
-            {o.directions.map((d) => (
+            {(o.directions ?? ["Направления, соответствующие профилю олимпиады, — их список устанавливает каждый вуз в правилах приёма"]).map((d) => (
               <li key={d} className="flex gap-3 rounded-2xl bg-paper px-5 py-4 text-ink">
                 <Compass className="mt-0.5 size-5 shrink-0 text-brass" />
                 {d}
@@ -97,7 +107,7 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
       <section className="mt-20" aria-labelledby="rewards">
         <SectionTitle id="rewards">Что даёт каждое место</SectionTitle>
         <div className="mt-8 overflow-hidden rounded-3xl border border-border">
-          {o.rewards.map((r, i) => (
+          {(o.vsosh ? VSOSH_REWARDS : RSOSH_REWARDS).map((r, i) => (
             <div key={r.place} className="grid gap-2 border-t border-border p-6 first:border-t-0 md:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] md:gap-8">
               <p className="flex items-baseline gap-3 font-display text-2xl text-ink">
                 <span className="text-lg text-brass">0{i + 1}</span>
@@ -107,9 +117,10 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
             </div>
           ))}
         </div>
-        {o.level !== "ВсОШ" && <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">{OLYMPIAD_NOTE}</p>}
+        {!o.vsosh && <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">{OLYMPIAD_NOTE}</p>}
       </section>
 
+      {o.stages && (
       <section className="mt-20" aria-labelledby="stages">
         <SectionTitle id="stages">Этапы</SectionTitle>
         <ol className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -124,17 +135,22 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
         </ol>
         <p className="mt-4 text-sm text-muted-foreground">Сроки примерные — точный календарь публикуется на сайте олимпиады в начале учебного года.</p>
       </section>
+      )}
 
+      {o.forGrade && (
       <section className="mt-20" aria-labelledby="advice">
         <SectionTitle id="advice">Совет для твоего класса</SectionTitle>
         <div className="mt-8">
           <GradeAdvice advice={o.forGrade} />
         </div>
-        <p className="mt-6 flex max-w-3xl gap-3 text-ink">
-          <MapPinned className="mt-0.5 size-5 shrink-0 text-brass" />
-          {o.regionNote}
-        </p>
+        {o.regionNote && (
+          <p className="mt-6 flex max-w-3xl gap-3 text-ink">
+            <MapPinned className="mt-0.5 size-5 shrink-0 text-brass" />
+            {o.regionNote}
+          </p>
+        )}
       </section>
+      )}
 
       {hosts.length > 0 && (
         <section className="mt-20" aria-labelledby="hosts">

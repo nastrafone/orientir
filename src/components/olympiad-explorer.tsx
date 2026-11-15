@@ -6,24 +6,23 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useProfile } from "@/components/profile-provider";
 import { Segmented } from "@/components/segmented";
-import { OLYMPIADS } from "@/data/olympiads";
+import { OLYMPIADS, type Olympiad } from "@/data/olympiads";
 import { SUBJECTS, subjectShort } from "@/data/subjects";
 import type { SubjectId } from "@/data/types";
 import { olympiadMatches } from "@/lib/match";
 import { NAV_FORWARD, SPRING_SMOOTH } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
-export function LevelBadge({ level, className }: { level: string; className?: string }) {
-  const top = level === "ВсОШ" || level === "I";
+export function LevelBadge({ olympiad, className }: { olympiad: Olympiad; className?: string }) {
   return (
     <span
       className={cn(
         "inline-flex h-7 items-center rounded-full px-3 text-xs font-semibold",
-        top ? "bg-ink text-white" : "bg-secondary text-ink",
+        olympiad.topLevel <= 1 ? "bg-ink text-white" : "bg-secondary text-ink",
         className,
       )}
     >
-      {level === "ВсОШ" ? "Высший статус" : `${level} уровень`}
+      {olympiad.vsosh ? olympiad.levelLabel : `${olympiad.levelLabel} уровень`}
     </span>
   );
 }
@@ -76,12 +75,12 @@ export function OlympiadExplorer() {
                 )}
               >
                 <div className="flex items-start justify-between gap-4">
-                  <LevelBadge level={o.level} />
+                  <LevelBadge olympiad={o} />
                   <ArrowUpRight className="size-5 text-brass transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brass" />
                 </div>
                 <h2 className="mt-5 font-display text-[1.8rem] leading-tight text-ink">{o.short}</h2>
                 <p className="mt-1 text-sm text-muted-foreground">{o.organizer}</p>
-                <p className="mt-4 line-clamp-2 text-[0.95rem] leading-relaxed text-ink/85">{o.profiles.join(" · ")}</p>
+                <p className="mt-4 line-clamp-2 text-[0.95rem] leading-relaxed text-ink/85">{o.profiles.map((p) => p.name).join(" · ")}</p>
                 <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-6">
                   {o.subjects
                     .filter((s) => s !== "rus")
@@ -97,7 +96,7 @@ export function OlympiadExplorer() {
                         {subjectShort(s)}
                       </span>
                     ))}
-                  <span className="ml-auto text-xs text-muted-foreground">{o.grades.split(" (")[0]}</span>
+                  {o.grades && <span className="ml-auto text-xs text-muted-foreground">{o.grades.split(" (")[0]}</span>}
                 </div>
               </Link>
             </motion.li>
