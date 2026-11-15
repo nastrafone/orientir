@@ -1,0 +1,122 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-manrope);
+  --font-heading: var(--font-cormorant);
+  --font-serif: var(--font-cormorant);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-sand: var(--sand);
+  --color-latte: var(--latte);
+  --color-cocoa: var(--cocoa);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Палитра: нежно-коричневый и белый. */
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #3a2a1f;
+  --card: #ffffff;
+  --card-foreground: #3a2a1f;
+  --popover: #ffffff;
+  --popover-foreground: #3a2a1f;
+  --primary: #8b6a50;
+  --primary-foreground: #ffffff;
+  --secondary: #f4ede5;
+  --secondary-foreground: #4a3628;
+  --muted: #f7f2ec;
+  --muted-foreground: #7c6757;
+  --accent: #ecdfd1;
+  --accent-foreground: #3a2a1f;
+  --destructive: #b4442f;
+  --border: #e9dfd4;
+  --input: #e2d4c5;
+  --ring: #b8957a;
+  --radius: 0.875rem;
+  --sand: #faf6f1;
+  --latte: #c9aa8e;
+  --cocoa: #5c4434;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "kern", "liga";
+    text-rendering: optimizeLegibility;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  ::selection {
+    background: #e6d3c0;
+    color: #3a2a1f;
+  }
+}
+
+/* Интро не мешает повторным визитам: флаг ставит inline-скрипт до отрисовки. */
+html[data-intro="skip"] #intro-overlay {
+  display: none;
+}
+
+@utility font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-feature-settings: "lnum", "kern";
+}
+
+.typing-caret::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  margin-left: 4px;
+  vertical-align: -0.08em;
+  background: currentColor;
+  animation: caret 1s steps(1) infinite;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-caret::after {
+    animation: none;
+  }
+}
