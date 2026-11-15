@@ -1,4 +1,5 @@
 import { PageHero } from "@/components/page-hero";
+import { Screen } from "@/components/screen";
 import { UniversityExplorer } from "@/components/university-explorer";
 import { pageMeta } from "@/lib/site";
 
@@ -11,7 +12,7 @@ export const metadata = pageMeta({
 
 export default function UniversitiesPage() {
   return (
-    <>
+    <Screen>
       <PageHero eyebrow="Вузы" title={<>Университеты, в которые <span className="text-primary italic">стоит целиться</span></>}>
         Столичные и региональные вузы с проходными баллами и нужными предметами ЕГЭ. Нажми на университет, чтобы увидеть
         направления, особенности конкурса и возможности для студентов.
@@ -21,6 +22,6 @@ export default function UniversitiesPage() {
         Проходные баллы — ориентировочный диапазон на бюджет по последним приёмным кампаниям (сумма трёх ЕГЭ и индивидуальных
         достижений, у МГУ — вместе с ДВИ). Цифры меняются каждый год, точные значения публикуют приёмные комиссии.
       </p>
-    </>
+    </Screen>
   );
 }

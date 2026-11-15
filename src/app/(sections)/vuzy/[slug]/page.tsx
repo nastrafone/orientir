@@ -3,12 +3,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Cutout } from "@/components/cutout";
+import { LargeTitle } from "@/components/large-title";
+import { Screen } from "@/components/screen";
 import { SectionTitle } from "@/components/page-hero";
 import { ProgramsTable } from "@/components/programs-table";
 import { COURSE_PROVIDERS } from "@/data/courses";
 import { getOlympiad } from "@/data/olympiads";
 import { regionLabel } from "@/data/regions";
 import { UNIVERSITIES, getUniversity } from "@/data/universities";
+import { NAV_BACK, NAV_FORWARD } from "@/lib/motion";
 import { SITE, pageMeta } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -45,9 +48,14 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
   };
 
   return (
+    <Screen>
     <article className="mx-auto max-w-7xl px-5 md:px-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Link href="/vuzy" className="mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-cocoa">
+      <Link
+        href="/vuzy"
+        transitionTypes={NAV_BACK}
+        className="pressable mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-cocoa"
+      >
         <ArrowLeft className="size-4" /> Все вузы
       </Link>
 
@@ -56,6 +64,7 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-latte">{u.short}</p>
           <h1 className="mt-4 font-display text-4xl leading-[1.08] text-cocoa sm:text-5xl">{u.name}</h1>
+          <LargeTitle title={u.short} />
           <p className="mt-4 font-display text-2xl italic text-primary">{u.tagline}</p>
           <p className="mt-5 leading-relaxed text-muted-foreground">{u.about}</p>
           <dl className="mt-7 grid grid-cols-2 gap-4 text-sm">
@@ -127,7 +136,8 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
                     <Link
                       key={o}
                       href={`/olimpiady/${ol.slug}`}
-                      className="rounded-full border border-border px-4 py-2 text-sm text-cocoa transition-colors hover:border-latte hover:bg-sand"
+                      transitionTypes={NAV_FORWARD}
+                      className="pressable rounded-full border border-border px-4 py-2 text-sm text-cocoa hover:border-latte hover:bg-sand"
                     >
                       {ol.short} →
                     </Link>
@@ -149,7 +159,11 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
             <p className="mt-3 leading-relaxed text-muted-foreground">{u.dorm}</p>
           </div>
           {courses && (
-            <Link href={`/kursy#${u.slug}`} className="group block rounded-3xl border border-border p-7 transition-colors hover:bg-sand">
+            <Link
+              href={`/kursy#${u.slug}`}
+              transitionTypes={NAV_FORWARD}
+              className="pressable group block rounded-3xl border border-border p-7 hover:bg-sand"
+            >
               <p className="font-display text-2xl text-cocoa">Курсы для школьников</p>
               <p className="mt-2 text-muted-foreground">
                 {courses.courses.map((c) => c.title).join(" · ")}
@@ -162,5 +176,6 @@ export default async function UniversityPage({ params }: PageProps<"/vuzy/[slug]
         </div>
       </section>
     </article>
+    </Screen>
   );
 }

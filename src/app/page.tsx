@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { HomePanel } from "@/components/home-panel";
 import { QuoteRotator } from "@/components/quote-rotator";
+import { Screen } from "@/components/screen";
 import { SiteHeader } from "@/components/site-header";
 import { SITE, pageMeta } from "@/lib/site";
 import heroPhoto from "@/assets/mgu-hero.jpg";
@@ -22,7 +23,7 @@ const jsonLd = {
 
 export default function Home() {
   return (
-    <div className="grid min-h-dvh [grid-template-areas:'header'_'photo'_'main'] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:grid-rows-[auto_1fr] lg:[grid-template-areas:'header_photo'_'main_photo']">
+    <Screen className="grid min-h-dvh [grid-template-areas:'header'_'photo'_'main'] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:grid-rows-[auto_1fr] lg:[grid-template-areas:'header_photo'_'main_photo']">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="[grid-area:header]">
         <SiteHeader variant="home" />
@@ -52,6 +53,6 @@ export default function Home() {
       <main className="[grid-area:main]">
         <HomePanel />
       </main>
-    </div>
+    </Screen>
   );
 }

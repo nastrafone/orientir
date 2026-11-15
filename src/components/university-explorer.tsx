@@ -1,15 +1,17 @@
 "use client";
 
 import { ArrowUpRight, MapPin } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Cutout } from "@/components/cutout";
 import { useProfile } from "@/components/profile-provider";
+import { Segmented } from "@/components/segmented";
 import { Badge } from "@/components/ui/badge";
 import type { University } from "@/data/types";
 import { UNIVERSITIES } from "@/data/universities";
 import { matchingPrograms, proximity, universityRank } from "@/lib/match";
-import { cn } from "@/lib/utils";
+import { NAV_FORWARD, SPRING_SMOOTH } from "@/lib/motion";
 
 type Place = "all" | "msk" | "spb" | "regions";
 type Fit = "mine" | "all";
@@ -21,21 +23,10 @@ const PLACES: { id: Place; label: string }[] = [
   { id: "regions", label: "Регионы" },
 ];
 
-export function FilterChip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className={cn(
-        "rounded-full border px-4 py-2 text-sm transition-colors duration-300",
-        active ? "border-cocoa bg-cocoa text-white" : "border-border bg-white text-cocoa hover:border-latte",
-      )}
-    >
-      {children}
-    </button>
-  );
-}
+const FITS: { id: Fit; label: string }[] = [
+  { id: "mine", label: "Подходят под мои ЕГЭ" },
+  { id: "all", label: "Все вузы" },
+];
 
 function minScore(u: University) {
   const p = u.programs.reduce((a, b) => (b.score[0] < a.score[0] ? b : a));
@@ -62,23 +53,8 @@ export function UniversityExplorer() {
   return (
     <div className="mx-auto max-w-7xl px-5 md:px-10">
       <div className="flex flex-col gap-4 border-y border-border py-5 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex flex-wrap gap-2">
-          {PLACES.map((p) => (
-            <FilterChip key={p.id} active={place === p.id} onClick={() => setPlace(p.id)}>
-              {p.label}
-            </FilterChip>
-          ))}
-        </div>
-        {personal && (
-          <div className="flex flex-wrap gap-2">
-            <FilterChip active={fit === "mine"} onClick={() => setFit("mine")}>
-              Подходят под мои ЕГЭ
-            </FilterChip>
-            <FilterChip active={fit === "all"} onClick={() => setFit("all")}>
-              Все вузы
-            </FilterChip>
-          </div>
-        )}
+        <Segmented label="Город" value={place} onChange={setPlace} options={PLACES} className="self-start" />
+        {personal && <Segmented label="Подбор" value={fit} onChange={setFit} options={FITS} className="self-start" />}
       </div>
 
       {list.length === 0 ? (
@@ -87,19 +63,27 @@ export function UniversityExplorer() {
         </p>
       ) : (
         <ul className="grid gap-x-6 gap-y-12 pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout" initial={false}>
           {list.map((u, i) => {
             const matches = personal ? matchingPrograms(u, personal.subjects).length : null;
             const near = personal ? proximity(u, personal) : null;
             return (
-              <li key={u.slug}>
-                <Link href={`/vuzy/${u.slug}`} className="group block">
+              <motion.li
+                key={u.slug}
+                layout
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={SPRING_SMOOTH}
+              >
+                <Link href={`/vuzy/${u.slug}`} transitionTypes={NAV_FORWARD} className="pressable group block">
                   <Cutout
                     src={u.image}
                     alt={u.imageAlt}
                     sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
                     priority={i < 3}
                     className="aspect-[5/4] transition-shadow duration-700 group-hover:shadow-[0_24px_60px_-30px_rgba(92,68,52,0.45)]"
-                    imageClassName="transition-transform duration-700 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.03]"
+                    imageClassName="transition-transform duration-700 ease-[var(--ease-spring)] group-hover:-translate-y-1.5 group-hover:scale-[1.03]"
                   />
                   <div className="mt-5 flex items-start justify-between gap-4">
                     <div className="min-w-0">
@@ -134,9 +118,10 @@ export function UniversityExplorer() {
                     </div>
                   )}
                 </Link>
-              </li>
+              </motion.li>
             );
           })}
+          </AnimatePresence>
         </ul>
       )}
     </div>

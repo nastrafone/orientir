@@ -2,9 +2,11 @@ import Link from "next/link";
 import { CareerFit } from "@/components/career-fit";
 import { Cutout } from "@/components/cutout";
 import { PageHero } from "@/components/page-hero";
+import { Screen } from "@/components/screen";
 import { CAREERS } from "@/data/careers";
 import { subjectLabel } from "@/data/subjects";
 import { getUniversity } from "@/data/universities";
+import { NAV_FORWARD } from "@/lib/motion";
 import { pageMeta } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +19,7 @@ export const metadata = pageMeta({
 
 export default function CareersPage() {
   return (
-    <>
+    <Screen>
       <PageHero eyebrow="Направления" title={<>Профессии будущего <span className="text-primary italic">и путь к ним</span></>}>
         Чем занимаются специалисты, почему они будут нужны, какие экзамены сдавать и где учиться. Рядом — люди, которые
         прославили эти профессии.
@@ -97,7 +99,8 @@ export default function CareersPage() {
                       <li key={s.university + s.program}>
                         <Link
                           href={`/vuzy/${u.slug}`}
-                          className="block rounded-2xl border border-border px-4 py-2.5 text-sm transition-colors hover:border-latte hover:bg-sand"
+                          transitionTypes={NAV_FORWARD}
+                          className="pressable block rounded-2xl border border-border px-4 py-2.5 text-sm hover:border-latte hover:bg-sand"
                         >
                           <span className="font-medium text-cocoa">{u.short}</span>
                           <span className="text-muted-foreground"> · {s.program}</span>
@@ -123,6 +126,6 @@ export default function CareersPage() {
           </section>
         ))}
       </div>
-    </>
+    </Screen>
   );
 }

@@ -8,6 +8,7 @@ import { EMPTY_DRAFT, ProfileFields, draftIsValid, type ProfileDraft } from "@/c
 import { useProfile } from "@/components/profile-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { SPRING_GENTLE, SPRING_SMOOTH } from "@/lib/motion";
 import { HEADER_ROW } from "@/lib/site";
 import { SPLASH_KEY } from "@/lib/storage-keys";
 import { cn } from "@/lib/utils";
@@ -102,10 +103,11 @@ export function Intro() {
     finish();
   };
 
+  // Шаги анкеты сменяются как экраны в iOS: новый выезжает справа пружиной, старый уходит влево.
   const stepMotion = {
-    initial: { opacity: 0, y: reduce ? 0 : 18 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE, delay: 0.15 } },
-    exit: { opacity: 0, y: reduce ? 0 : -12, transition: { duration: 0.45, ease: EASE } },
+    initial: { opacity: 0, x: reduce ? 0 : 48 },
+    animate: { opacity: 1, x: 0, transition: { ...SPRING_SMOOTH, delay: 0.12 } },
+    exit: { opacity: 0, x: reduce ? 0 : -36, transition: { duration: 0.3, ease: EASE } },
   };
 
   return (
@@ -133,11 +135,11 @@ export function Intro() {
                 : cn("inset-x-0 top-0 items-center bg-white/90 backdrop-blur-sm", HEADER_ROW),
             )}
           >
-            <motion.div layout transition={{ layout: { duration: reduce ? 0 : 1.1, ease: EASE } }}>
+            <motion.div layout transition={{ layout: SPRING_GENTLE }}>
               <motion.div
-                initial={{ opacity: 0, scale: 1.6 }}
+                initial={{ opacity: 0, scale: 1.4 }}
                 animate={{ opacity: 1, scale: phase === "splash" ? 1.6 : 1 }}
-                transition={{ opacity: { duration: 0.8 }, scale: { duration: reduce ? 0 : 1.1, ease: EASE } }}
+                transition={{ opacity: { duration: 0.8 }, scale: SPRING_GENTLE }}
                 style={{ transformOrigin: "center" }}
               >
                 <Logo />

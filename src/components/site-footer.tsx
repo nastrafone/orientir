@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
+import { NAV_TAB } from "@/lib/motion";
 import { NAV } from "@/lib/site";
 
 export function SiteFooter() {
@@ -15,13 +16,13 @@ export function SiteFooter() {
         </div>
         <nav aria-label="Разделы в подвале" className="flex flex-col gap-2.5 text-sm">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="text-cocoa/80 transition-colors hover:text-cocoa">
+            <Link key={item.href} href={item.href} transitionTypes={NAV_TAB} className="text-cocoa/80 transition-colors hover:text-cocoa">
               {item.label}
             </Link>
           ))}
         </nav>
         <div className="flex flex-col gap-2.5 text-sm">
-          <Link href="/istochniki" className="text-cocoa/80 transition-colors hover:text-cocoa">
+          <Link href="/istochniki" transitionTypes={NAV_TAB} className="text-cocoa/80 transition-colors hover:text-cocoa">
             Источники и авторы фото
           </Link>
           <a href="https://fipi.ru" target="_blank" rel="noopener noreferrer" className="text-cocoa/80 transition-colors hover:text-cocoa">

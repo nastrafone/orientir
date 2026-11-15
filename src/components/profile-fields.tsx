@@ -1,11 +1,14 @@
 "use client";
 
 import { Check, Lock } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { Segmented } from "@/components/segmented";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { REGIONS } from "@/data/regions";
 import { SUBJECTS } from "@/data/subjects";
 import type { Grade, Profile, RegionId, SubjectId } from "@/data/types";
+import { SPRING_SMOOTH, SPRING_SNAPPY } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export type ProfileDraft = Omit<Profile, "name">;
@@ -36,7 +39,7 @@ function Chip({
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-sm transition-colors duration-300",
+        "pressable inline-flex items-center rounded-full border px-3.5 py-2 text-sm",
         active
           ? "border-primary bg-primary text-primary-foreground"
           : "border-input bg-white text-foreground hover:border-latte hover:bg-sand",
@@ -46,6 +49,25 @@ function Chip({
     >
       {children}
     </button>
+  );
+}
+
+/** Галочка выезжает пружиной и раздвигает чип, как отметка в списках iOS. */
+function ChipCheck({ shown }: { shown: boolean }) {
+  return (
+    <AnimatePresence initial={false}>
+      {shown && (
+        <motion.span
+          initial={{ width: 0, opacity: 0, scale: 0.4 }}
+          animate={{ width: "auto", opacity: 1, scale: 1 }}
+          exit={{ width: 0, opacity: 0, scale: 0.4 }}
+          transition={SPRING_SNAPPY}
+          className="inline-flex overflow-hidden"
+        >
+          <Check className="mr-1.5 size-3.5 shrink-0" />
+        </motion.span>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -74,13 +96,16 @@ export function ProfileFields({ draft, onChange }: { draft: ProfileDraft; onChan
   return (
     <div className="space-y-7">
       <Question n={1} title="В каком ты классе?">
-        <div className="flex gap-2">
-          {([10, 11] as Grade[]).map((g) => (
-            <Chip key={g} active={draft.grade === g} onClick={() => onChange({ ...draft, grade: g })} className="px-5">
-              {g} класс
-            </Chip>
-          ))}
-        </div>
+        <Segmented
+          label="Класс"
+          size="lg"
+          value={draft.grade}
+          onChange={(grade: Grade) => onChange({ ...draft, grade })}
+          options={[
+            { id: 10, label: "10 класс" },
+            { id: 11, label: "11 класс" },
+          ]}
+        />
       </Question>
 
       <Question n={2} title="Какие экзамены планируешь сдавать?" hint="Выбери минимум два предмета, кроме русского языка.">
@@ -89,7 +114,7 @@ export function ProfileFields({ draft, onChange }: { draft: ProfileDraft; onChan
             const active = draft.subjects.includes(s.id);
             return (
               <Chip key={s.id} active={active} disabled={s.id === "rus"} onClick={() => toggleSubject(s.id)}>
-                {s.id === "rus" ? <Lock className="size-3.5" /> : active && <Check className="size-3.5" />}
+                {s.id === "rus" ? <Lock className="mr-1.5 size-3.5" /> : <ChipCheck shown={active} />}
                 {s.label}
               </Chip>
             );
@@ -98,22 +123,30 @@ export function ProfileFields({ draft, onChange }: { draft: ProfileDraft; onChan
       </Question>
 
       <Question n={3} title="Где ты живёшь?">
-        <div className="flex flex-wrap gap-2">
-          <Chip active={capitalOrOther === "msk"} onClick={() => onChange({ ...draft, region: "msk", city: undefined })}>
-            Москва и область
-          </Chip>
-          <Chip active={capitalOrOther === "spb"} onClick={() => onChange({ ...draft, region: "spb", city: undefined })}>
-            Санкт-Петербург и область
-          </Chip>
-          <Chip
-            active={capitalOrOther === "other"}
-            onClick={() => capitalOrOther !== "other" && onChange({ ...draft, region: "vfd" })}
-          >
-            Другой регион
-          </Chip>
-        </div>
+        <Segmented
+          label="Регион"
+          value={capitalOrOther}
+          onChange={(v) => {
+            if (v === "other") {
+              if (capitalOrOther !== "other") onChange({ ...draft, region: "vfd" });
+            } else onChange({ ...draft, region: v, city: undefined });
+          }}
+          options={[
+            { id: "msk", label: "Москва и область" },
+            { id: "spb", label: "Санкт-Петербург и область" },
+            { id: "other", label: "Другой регион" },
+          ]}
+        />
+        <AnimatePresence initial={false}>
         {capitalOrOther === "other" && (
-          <div className="grid gap-2 pt-1 sm:grid-cols-2">
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={SPRING_SMOOTH}
+            className="-m-1 overflow-hidden"
+          >
+          <div className="grid gap-2 p-1 pt-2 sm:grid-cols-2">
             <Select value={draft.region} onValueChange={(v) => onChange({ ...draft, region: v as RegionId })}>
               <SelectTrigger className="h-11 w-full rounded-xl bg-white" aria-label="Федеральный округ">
                 <SelectValue placeholder="Федеральный округ" />
@@ -137,7 +170,9 @@ export function ProfileFields({ draft, onChange }: { draft: ProfileDraft; onChan
               {REGIONS.find((r) => r.id === draft.region)?.hint}
             </p>
           </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </Question>
     </div>
   );

@@ -1,5 +1,6 @@
 import { OlympiadExplorer } from "@/components/olympiad-explorer";
 import { PageHero } from "@/components/page-hero";
+import { Screen } from "@/components/screen";
 import { OLYMPIAD_NOTE } from "@/data/olympiads";
 import { pageMeta } from "@/lib/site";
 
@@ -12,7 +13,7 @@ export const metadata = pageMeta({
 
 export default function OlympiadsPage() {
   return (
-    <>
+    <Screen>
       <PageHero eyebrow="Олимпиады" title={<>Олимпиады, которые <span className="text-primary italic">открывают двери</span></>}>
         Диплом олимпиады может дать поступление без экзаменов (БВИ) или 100 баллов ЕГЭ. Выбери предмет и нажми на олимпиаду —
         покажем направления и что даёт каждое место.
@@ -38,6 +39,6 @@ export default function OlympiadsPage() {
         Уровни олимпиад ежегодно пересматриваются и различаются по профилям. Актуальный перечень — на сайте Российского
         совета олимпиад школьников (rsr-olymp.ru), календарь — на olimpiada.ru.
       </p>
-    </>
+    </Screen>
   );
 }

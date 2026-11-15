@@ -1,14 +1,16 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useProfile } from "@/components/profile-provider";
-import { FilterChip } from "@/components/university-explorer";
+import { Segmented } from "@/components/segmented";
 import { OLYMPIADS } from "@/data/olympiads";
 import { SUBJECTS, subjectShort } from "@/data/subjects";
 import type { SubjectId } from "@/data/types";
 import { olympiadMatches } from "@/lib/match";
+import { NAV_FORWARD, SPRING_SMOOTH } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 export function LevelBadge({ level, className }: { level: string; className?: string }) {
@@ -39,31 +41,37 @@ export function OlympiadExplorer() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 md:px-10">
-      <div className="flex flex-wrap gap-2 border-y border-border py-5">
-        {personal && (
-          <FilterChip active={active === "mine"} onClick={() => setSubject("mine")}>
-            По моим предметам
-          </FilterChip>
-        )}
-        <FilterChip active={active === "all"} onClick={() => setSubject("all")}>
-          Все
-        </FilterChip>
-        {SUBJECTS.filter((s) => s.id !== "rus").map((s) => (
-          <FilterChip key={s.id} active={active === s.id} onClick={() => setSubject(s.id)}>
-            {s.label.replace(" (профиль)", "")}
-          </FilterChip>
-        ))}
+      <div className="border-y border-border py-5">
+        <Segmented
+          label="Предмет"
+          value={active}
+          onChange={setSubject}
+          options={[
+            ...(personal ? [{ id: "mine" as const, label: "По моим предметам" }] : []),
+            { id: "all" as const, label: "Все" },
+            ...SUBJECTS.filter((s) => s.id !== "rus").map((s) => ({ id: s.id, label: s.label.replace(" (профиль)", "") })),
+          ]}
+        />
       </div>
 
       <ul className="grid gap-5 pt-10 md:grid-cols-2">
+        <AnimatePresence mode="popLayout" initial={false}>
         {list.map((o) => {
           const mine = personal ? olympiadMatches(o, personal.subjects) : false;
           return (
-            <li key={o.slug}>
+            <motion.li
+              key={o.slug}
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={SPRING_SMOOTH}
+            >
               <Link
                 href={`/olimpiady/${o.slug}`}
+                transitionTypes={NAV_FORWARD}
                 className={cn(
-                  "group flex h-full flex-col rounded-3xl border p-7 transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_24px_60px_-34px_rgba(92,68,52,0.45)]",
+                  "pressable group flex h-full flex-col rounded-3xl border p-7 hover:shadow-[0_24px_60px_-34px_rgba(92,68,52,0.45)]",
                   mine ? "border-latte/70 bg-sand" : "border-border bg-white",
                 )}
               >
@@ -92,9 +100,10 @@ export function OlympiadExplorer() {
                   <span className="ml-auto text-xs text-muted-foreground">{o.grades.split(" (")[0]}</span>
                 </div>
               </Link>
-            </li>
+            </motion.li>
           );
         })}
+        </AnimatePresence>
       </ul>
       {list.length === 0 && <p className="py-16 text-center text-muted-foreground">По этому предмету олимпиад в справочнике пока нет.</p>}
     </div>

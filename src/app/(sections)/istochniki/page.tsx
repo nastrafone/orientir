@@ -1,4 +1,5 @@
 import { PageHero, SectionTitle } from "@/components/page-hero";
+import { Screen } from "@/components/screen";
 import { PHOTO_CREDITS } from "@/data/credits";
 import { pageMeta } from "@/lib/site";
 
@@ -18,7 +19,7 @@ const DATA_SOURCES = [
 
 export default function SourcesPage() {
   return (
-    <>
+    <Screen>
       <PageHero eyebrow="Источники" title="Источники и авторы фото">
         «Ориентир» — справочный ресурс. Проходные баллы указаны как ориентировочный диапазон по последним приёмным кампаниям,
         уровни олимпиад и правила приёма пересматриваются ежегодно. Перед подачей документов всегда сверяйтесь с официальными
@@ -70,6 +71,6 @@ export default function SourcesPage() {
           </ul>
         </section>
       </div>
-    </>
+    </Screen>
   );
 }

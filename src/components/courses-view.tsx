@@ -1,20 +1,37 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 import { Cutout } from "@/components/cutout";
 import { useProfile } from "@/components/profile-provider";
-import { FilterChip } from "@/components/university-explorer";
+import { Segmented } from "@/components/segmented";
 import { COURSE_PROVIDERS, FEDERAL_PROGRAMS } from "@/data/courses";
 import { isCapital } from "@/data/regions";
 import type { Course } from "@/data/types";
 import { getUniversity } from "@/data/universities";
+import { NAV_FORWARD, SPRING_SMOOTH } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 type Filter = "all" | "free" | "online";
 
+const FILTERS: { id: Filter; label: string }[] = [
+  { id: "all", label: "Все курсы" },
+  { id: "free", label: "Бесплатные" },
+  { id: "online", label: "Онлайн и заочно" },
+];
+
 const PRICE: Record<Course["price"], string> = { free: "Бесплатно", paid: "Платно", mixed: "Есть бесплатный формат" };
+
+// Карточки при фильтрации раздвигаются и появляются пружиной, как ячейки списка в iOS.
+const appear = {
+  layout: true,
+  initial: { opacity: 0, scale: 0.95 },
+  animate: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.95 },
+  transition: SPRING_SMOOTH,
+} as const;
 
 const isOnline = (c: Course) => /онлайн|заочно/i.test(c.format);
 const isFree = (c: Course) => c.price !== "paid";
@@ -55,16 +72,8 @@ export function CoursesView() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 md:px-10">
-      <div className="flex flex-wrap gap-2 border-y border-border py-5">
-        <FilterChip active={filter === "all"} onClick={() => setFilter("all")}>
-          Все курсы
-        </FilterChip>
-        <FilterChip active={filter === "free"} onClick={() => setFilter("free")}>
-          Бесплатные
-        </FilterChip>
-        <FilterChip active={filter === "online"} onClick={() => setFilter("online")}>
-          Онлайн и заочно
-        </FilterChip>
+      <div className="border-y border-border py-5">
+        <Segmented label="Формат" value={filter} onChange={setFilter} options={FILTERS} />
       </div>
 
       {remote && (
@@ -79,27 +88,31 @@ export function CoursesView() {
           Бесплатные федеральные программы
         </h2>
         <ul className="mt-6 grid gap-5 md:grid-cols-3">
-          {FEDERAL_PROGRAMS.filter(pass).map((c) => (
-            <li key={c.title}>
-              <CourseCard course={c} highlight={Boolean(remote && isOnline(c))} />
-            </li>
-          ))}
+          <AnimatePresence mode="popLayout" initial={false}>
+            {FEDERAL_PROGRAMS.filter(pass).map((c) => (
+              <motion.li key={c.title} {...appear}>
+                <CourseCard course={c} highlight={Boolean(remote && isOnline(c))} />
+              </motion.li>
+            ))}
+          </AnimatePresence>
         </ul>
       </section>
 
       <div className="mt-16 space-y-16">
+        <AnimatePresence mode="popLayout" initial={false}>
         {COURSE_PROVIDERS.map((provider) => {
           const u = getUniversity(provider.university);
           const courses = provider.courses.filter(pass);
           if (!u || courses.length === 0) return null;
           return (
-            <section
+            <motion.section
               key={provider.university}
+              {...appear}
               id={u.slug}
               aria-labelledby={`${u.slug}-title`}
               className="grid scroll-mt-28 gap-8 border-t border-border pt-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.6fr)] lg:gap-12"
             >
-              <Link href={`/vuzy/${u.slug}`} className="group block self-start">
+              <Link href={`/vuzy/${u.slug}`} transitionTypes={NAV_FORWARD} className="pressable group block self-start">
                 <Cutout
                   src={u.image}
                   alt={u.imageAlt}
@@ -113,15 +126,18 @@ export function CoursesView() {
                 <p className="text-sm text-muted-foreground">{u.city}</p>
               </Link>
               <ul className="grid gap-5 md:grid-cols-2">
-                {courses.map((c) => (
-                  <li key={c.title}>
-                    <CourseCard course={c} highlight={Boolean(remote && isOnline(c))} />
-                  </li>
-                ))}
+                <AnimatePresence mode="popLayout" initial={false}>
+                  {courses.map((c) => (
+                    <motion.li key={c.title} {...appear}>
+                      <CourseCard course={c} highlight={Boolean(remote && isOnline(c))} />
+                    </motion.li>
+                  ))}
+                </AnimatePresence>
               </ul>
-            </section>
+            </motion.section>
           );
         })}
+        </AnimatePresence>
       </div>
     </div>
   );

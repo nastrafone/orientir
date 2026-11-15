@@ -3,11 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { GradeAdvice } from "@/components/grade-advice";
+import { LargeTitle } from "@/components/large-title";
+import { Screen } from "@/components/screen";
 import { LevelBadge } from "@/components/olympiad-explorer";
 import { SectionTitle } from "@/components/page-hero";
 import { OLYMPIAD_NOTE, OLYMPIADS, getOlympiad } from "@/data/olympiads";
 import { subjectLabel } from "@/data/subjects";
 import { UNIVERSITIES } from "@/data/universities";
+import { NAV_BACK, NAV_FORWARD } from "@/lib/motion";
 import { pageMeta } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -32,8 +35,13 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
   const hosts = UNIVERSITIES.filter((u) => u.ownOlympiads.includes(o.slug));
 
   return (
+    <Screen>
     <article className="mx-auto max-w-7xl px-5 md:px-10">
-      <Link href="/olimpiady" className="mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-cocoa">
+      <Link
+        href="/olimpiady"
+        transitionTypes={NAV_BACK}
+        className="pressable mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-cocoa"
+      >
         <ArrowLeft className="size-4" /> Все олимпиады
       </Link>
 
@@ -43,6 +51,7 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
           <span className="text-sm text-muted-foreground">{o.grades}</span>
         </div>
         <h1 className="mt-5 font-display text-4xl leading-[1.08] text-cocoa sm:text-6xl">{o.name}</h1>
+        <LargeTitle title={o.short} />
         <p className="mt-4 text-lg text-muted-foreground">Организатор: {o.organizer}</p>
         <div className="mt-6 flex flex-wrap gap-2">
           {o.subjects.map((s) => (
@@ -135,7 +144,8 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
               <Link
                 key={u.slug}
                 href={`/vuzy/${u.slug}`}
-                className="rounded-full border border-border px-5 py-2.5 text-cocoa transition-colors hover:border-latte hover:bg-sand"
+                transitionTypes={NAV_FORWARD}
+                className="pressable rounded-full border border-border px-5 py-2.5 text-cocoa hover:border-latte hover:bg-sand"
               >
                 {u.short} →
               </Link>
@@ -144,5 +154,6 @@ export default async function OlympiadPage({ params }: PageProps<"/olimpiady/[sl
         </section>
       )}
     </article>
+    </Screen>
   );
 }

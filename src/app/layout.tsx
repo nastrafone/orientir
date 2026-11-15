@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { AppShell, MotionRoot } from "@/components/app-shell";
 import { Intro } from "@/components/intro";
 import { ProfileDialog } from "@/components/profile-dialog";
 import { ProfileProvider } from "@/components/profile-provider";
@@ -66,7 +67,12 @@ const introFlagScript = `try{if(sessionStorage.getItem(${JSON.stringify(SPLASH_K
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${cormorant.variable} h-full antialiased`} suppressHydrationWarning>
+    <html
+      lang="ru"
+      data-scroll-behavior="smooth"
+      className={`${manrope.variable} ${cormorant.variable} h-full scroll-smooth antialiased`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: introFlagScript }} />
         <noscript>
@@ -75,9 +81,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-full flex-col">
         <ProfileProvider>
-          <Intro />
-          {children}
-          <ProfileDialog />
+          <MotionRoot>
+            <Intro />
+            <AppShell>{children}</AppShell>
+            <ProfileDialog />
+          </MotionRoot>
         </ProfileProvider>
       </body>
     </html>

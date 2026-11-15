@@ -1,6 +1,7 @@
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { AdviceFocus } from "@/components/advice-focus";
 import { PageHero, SectionTitle } from "@/components/page-hero";
+import { Screen } from "@/components/screen";
 import { ACHIEVEMENTS, ADMISSION_RULES, EXAM_TIPS, PLAN_10, PLAN_11, REGIONAL_TIPS, RESOURCES } from "@/data/advice";
 import { pageMeta } from "@/lib/site";
 
@@ -28,7 +29,7 @@ function Timeline({ items }: { items: { when: string; title: string; text: strin
 
 export default function AdvicePage() {
   return (
-    <>
+    <Screen>
       <PageHero eyebrow="Советы" title={<>План, сроки и <span className="text-primary italic">правила поступления</span></>}>
         Что делать в 10 и 11 классе, чтобы к лету у тебя были высокие баллы, дипломы олимпиад и понятный список вузов.
       </PageHero>
@@ -127,6 +128,6 @@ export default function AdvicePage() {
           </ul>
         </section>
       </div>
-    </>
+    </Screen>
   );
 }

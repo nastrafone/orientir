@@ -12,6 +12,7 @@ import { subjectLabel } from "@/data/subjects";
 import type { Profile } from "@/data/types";
 import { UNIVERSITIES } from "@/data/universities";
 import { matchingPrograms, olympiadMatches, proximity } from "@/lib/match";
+import { NAV_FORWARD, NAV_TAB, SPRING_SMOOTH } from "@/lib/motion";
 import { NAV } from "@/lib/site";
 
 function plural(n: number, one: string, few: string, many: string) {
@@ -104,13 +105,14 @@ export function HomePanel() {
         {NAV.map((item, i) => (
           <motion.div
             key={item.href}
-            initial={{ opacity: 0, y: reduce ? 0 : 12 }}
+            initial={{ opacity: 0, y: reduce ? 0 : 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 + i * 0.07, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ ...SPRING_SMOOTH, delay: 0.08 + i * 0.06 }}
           >
             <Link
               href={item.href}
-              className="group flex items-start gap-5 border-b border-border py-5 transition-colors duration-500 hover:bg-sand sm:px-3"
+              transitionTypes={NAV_FORWARD}
+              className="pressable group flex items-start gap-5 rounded-2xl border-b border-border py-5 hover:bg-sand sm:px-3"
             >
               <span className="mt-1.5 font-display text-lg text-latte">0{i + 1}</span>
               <span className="flex-1">
@@ -129,7 +131,7 @@ export function HomePanel() {
 
       <p className="mt-8 text-xs leading-relaxed text-muted-foreground">
         Данные о вузах и олимпиадах — ориентир. Правила приёма меняются ежегодно, сверяйтесь с официальными сайтами.{" "}
-        <Link href="/istochniki" className="underline underline-offset-4 hover:text-cocoa">
+        <Link href="/istochniki" transitionTypes={NAV_TAB} className="underline underline-offset-4 hover:text-cocoa">
           Источники
         </Link>
       </p>

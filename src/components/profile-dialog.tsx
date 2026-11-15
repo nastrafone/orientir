@@ -7,12 +7,20 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 
 export function ProfileDialog() {
   const { editorOpen, setEditorOpen } = useProfile();
   return (
     <Dialog open={editorOpen} onOpenChange={setEditorOpen}>
-      <DialogContent className="max-h-[92dvh] overflow-y-auto rounded-3xl p-6 sm:max-w-2xl sm:p-8">
+      <DialogContent
+        className={cn(
+          "max-h-[92dvh] overflow-y-auto rounded-3xl p-6 sm:max-w-2xl sm:p-8",
+          // На телефоне — шторка снизу со скруглённым верхом, как sheet в iOS.
+          "max-sm:top-auto max-sm:bottom-0 max-sm:left-0 max-sm:max-w-none max-sm:translate-x-0 max-sm:translate-y-0 max-sm:rounded-b-none max-sm:rounded-t-[28px] max-sm:pb-[max(1.5rem,env(safe-area-inset-bottom))] max-sm:pt-3",
+        )}
+      >
+        <div aria-hidden="true" className="mx-auto mb-1 h-1.5 w-10 rounded-full bg-cocoa/15 sm:hidden" />
         {editorOpen && <ProfileEditor onDone={() => setEditorOpen(false)} />}
       </DialogContent>
     </Dialog>
