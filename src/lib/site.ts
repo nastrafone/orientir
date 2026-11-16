@@ -5,7 +5,11 @@ export const SITE = {
   title: "Ориентир — навигатор для старшеклассников",
   description:
     "Бесплатный справочник для учеников 10–11 классов: олимпиады с льготами, курсы при университетах, вузы с проходными баллами и востребованные профессии — с учётом твоих предметов ЕГЭ и региона.",
-  url: (process.env.SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
+  // На Vercel адрес берётся из системной переменной проекта, если SITE_URL не задан явно.
+  url: (
+    process.env.SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000")
+  ).replace(/\/$/, ""),
   locale: "ru_RU",
 };
 
